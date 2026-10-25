@@ -1,0 +1,48 @@
+---
+import type { Permission } from '../config/permissions';
+import { loginFlow } from '../config/permissions';
+import Fact from './Fact.astro';
+
+interface Props {
+  permissions: Permission[];
+}
+
+const { permissions } = Astro.props;
+const unconfirmed = permissions.some((p) => !p.confirmed);
+---
+
+{unconfirmed && (
+  <p class="mb-4">
+    <Fact fact={loginFlow} /> Permissions marked “to confirm” are candidates and are not final.
+  </p>
+)}
+<div class="overflow-x-auto rounded-xl border border-line">
+  <table class="w-full min-w-[36rem] border-collapse text-left text-[0.9375rem]">
+    <caption class="sr-only">Permissions Get Assist requests</caption>
+    <thead class="bg-mist">
+      <tr>
+        <th scope="col" class="px-4 py-3 font-semibold">
+          Permission
+        </th>
+        <th scope="col" class="px-4 py-3 font-semibold">
+          Why Get Assist needs it
+        </th>
+        <th scope="col" class="px-4 py-3 font-semibold">
+          What it allows
+        </th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-line">
+      {permissions.map((p) => (
+        <tr class="align-top">
+          <th scope="row" class="px-4 py-3 font-normal">
+            <code class="font-semibold text-ink">{p.name}</code>
+            {!p.confirmed && <span class="mt-1 block text-sm text-slate">to confirm</span>}
+          </th>
+          <td class="px-4 py-3 text-slate">{p.why}</td>
+          <td class="px-4 py-3 text-slate">{p.allows}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

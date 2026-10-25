@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import EmailLink from '../components/EmailLink.astro';
+import Fact from '../components/Fact.astro';
+import { site } from '../config/site';
+
+const rows = [
+  { label: 'General questions', email: site.emails.general },
+  { label: 'Help with your account', email: site.emails.support },
+  { label: 'Privacy and data requests', email: site.emails.privacy },
+];
+---
+
+<Base
+  title="Contact"
+  description="Email addresses for general questions, support and privacy requests about Get Assist."
+>
+  <div class="container-site pt-14 lg:pt-20">
+    <h1 class="text-4xl font-semibold sm:text-5xl">Contact us</h1>
+    <p class="mt-5 max-w-[52ch] text-xl leading-relaxed text-slate">
+      Email the address that fits your question. For deletion requests, the{' '}
+      <a href="/data-deletion">data deletion page</a> lists what to include.
+    </p>
+
+    <dl class="mt-12 max-w-3xl divide-y divide-line border-y border-line">
+      {rows.map((r) => (
+        <div class="grid gap-1 py-5 sm:grid-cols-[16rem_1fr] sm:gap-6">
+          <dt class="font-semibold">{r.label}</dt>
+          <dd class="break-words">
+            <EmailLink email={r.email} />
+          </dd>
+        </div>
+      ))}
+    </dl>
+
+    <h2 class="mt-14 text-xl">Company</h2>
+    <address class="mt-3 text-slate not-italic">
+      <Fact fact={site.operator.legalName} />
+      <br />
+      <Fact fact={site.operator.address} />
+      <br />
+      <Fact fact={site.operator.country} />
+    </address>
+  </div>
+</Base>

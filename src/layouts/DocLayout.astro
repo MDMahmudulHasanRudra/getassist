@@ -1,0 +1,46 @@
+---
+import Base from './Base.astro';
+
+export interface TocItem {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  toc: TocItem[];
+}
+
+const { title, description, toc } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <div class="container-site pt-14 pb-4 lg:pt-20">
+    <slot name="intro" />
+  </div>
+  <div class="container-site grid gap-10 lg:grid-cols-[15rem_1fr] lg:gap-16">
+    <nav aria-label="On this page" class="no-print lg:sticky lg:top-6 lg:self-start">
+      <details class="rounded-xl border border-line p-4 lg:border-0 lg:p-0" open>
+        <summary class="cursor-pointer font-semibold lg:pointer-events-none lg:list-none">
+          On this page
+        </summary>
+        <ol class="mt-3 space-y-1.5 text-[0.9375rem]">
+          {toc.map((t) => (
+            <li>
+              <a
+                href={`#${t.id}`}
+                class="text-slate no-underline hover:text-signal hover:underline"
+              >
+                {t.label}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </details>
+    </nav>
+    <article class="prose-legal min-w-0">
+      <slot />
+    </article>
+  </div>
+</Base>

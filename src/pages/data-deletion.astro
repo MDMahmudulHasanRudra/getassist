@@ -1,0 +1,133 @@
+---
+import DocLayout from '../layouts/DocLayout.astro';
+import LegalIntro from '../components/LegalIntro.astro';
+import Fact from '../components/Fact.astro';
+import EmailLink from '../components/EmailLink.astro';
+import { site } from '../config/site';
+
+const toc = [
+  { id: 'request', label: 'How to request deletion' },
+  { id: 'verify', label: 'How we verify the request' },
+  { id: 'deleted', label: 'What is deleted' },
+  { id: 'kept', label: 'What we may keep' },
+  { id: 'timeframe', label: 'How long it takes' },
+  { id: 'status', label: 'Checking the status' },
+  { id: 'disconnect', label: 'Disconnecting a Page or account' },
+  { id: 'customers', label: 'If you messaged a business' },
+];
+---
+
+<DocLayout
+  title="Data deletion"
+  description="How to ask Get Assist to delete your data, what is deleted, how long it takes, and what happens when a Facebook Page or Instagram account is disconnected."
+  toc={toc}
+>
+  <div slot="intro">
+    <LegalIntro title="Data deletion instructions">
+      <p class="text-slate">
+        To have your data deleted, email <EmailLink email={site.emails.privacy} /> with the subject
+        “Data deletion request”. You do not need a {site.brand} account to ask. The steps below
+        explain what to include and what happens next.
+      </p>
+    </LegalIntro>
+  </div>
+
+  <h2 id="request">How to request deletion</h2>
+  <p>
+    Email <EmailLink email={site.emails.privacy} /> and include:
+  </p>
+  <ul>
+    <li>your name and the email address you use with {site.brand}, if you have an account;</li>
+    <li>
+      the Facebook Page name or Instagram username concerned, if your request is about a connected
+      Page or account;
+    </li>
+    <li>
+      if you messaged a business that uses {site.brand}: the name of that business, the channel
+      (Messenger or Instagram) and the name or username you messaged from;
+    </li>
+    <li>what you want deleted: everything, or specific conversations or data.</li>
+  </ul>
+  <p>Do not send passwords or payment details.</p>
+
+  <h2 id="verify">How we verify the request</h2>
+  <p>
+    We delete data only for the person or business it belongs to. Before deleting we may ask you to:
+  </p>
+  <ul>
+    <li>reply from the email address linked to the {site.brand} account; or</li>
+    <li>
+      show that you manage the Page or Instagram account concerned, for example by sending a message
+      from it; or
+    </li>
+    <li>
+      for people who messaged a business, confirm details of the conversation so we can find it.
+    </li>
+  </ul>
+
+  <h2 id="deleted">What is deleted or anonymised</h2>
+  <ul>
+    <li>Account requests: your account profile, team membership and settings.</li>
+    <li>
+      Connected Page or account requests: access tokens, conversation messages, customer
+      identifiers, attachments and notes for that Page or account.
+    </li>
+    <li>
+      Requests from people who messaged a business: your messages, identifiers and attachments in
+      that business’s inbox.
+    </li>
+    <li>Knowledge base content belonging to a deleted account.</li>
+  </ul>
+
+  <h2 id="kept">What we may keep</h2>
+  <p>
+    We may keep limited records where the law requires it, such as invoices and payment records, and
+    a record that a deletion request was made and completed. Data in backups is removed when those
+    backups expire: <Fact fact={site.retention.backups} />
+  </p>
+
+  <h2 id="timeframe">How long it takes</h2>
+  <p>
+    We confirm that we received your request and complete it within{' '}
+    <Fact fact={site.legal.deletionTimeframe} /> of verifying it.
+  </p>
+
+  <h2 id="status">Checking the status of your request</h2>
+  <p>
+    We reply by email when the request is complete. You can also ask about the status at any time by
+    replying to that email thread or writing to <EmailLink email={site.emails.privacy} />.
+  </p>
+
+  <h2 id="disconnect">When a Page or Instagram account is disconnected</h2>
+  <p>
+    If a business disconnects a Page or Instagram account inside {site.brand}, or removes{' '}
+    {site.brand}
+    in its Facebook or Instagram settings, we stop receiving new messages for it straight away.
+  </p>
+  <p>
+    Conversations already stored:{' '}
+    <Fact
+      fact={{
+        value: null,
+        need: 'what happens to stored conversations after disconnecting (kept until deletion request, or deleted after N days)',
+      }}
+    />
+  </p>
+  <p>
+    Automatic deletion when you remove {site.brand} in Facebook settings:{' '}
+    <Fact
+      fact={{
+        value: null,
+        need: 'confirm whether the app handles Meta’s data deletion callback, and what it deletes',
+      }}
+    />
+  </p>
+
+  <h2 id="customers">If you messaged a business that uses {site.brand}</h2>
+  <p>
+    The business you messaged controls your conversation data, and {site.brand} processes it on that
+    business’s behalf. You can ask the business directly, or email{' '}
+    <EmailLink email={site.emails.privacy} /> with the details above and we will handle the request
+    with the business.
+  </p>
+</DocLayout>

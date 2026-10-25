@@ -1,0 +1,12 @@
+---
+import type { OwnerFact } from '../config/owner';
+import Fact from './Fact.astro';
+
+interface Props {
+  email: OwnerFact;
+}
+
+const { email } = Astro.props;
+---
+
+{email.value ? <a href={`mailto:${email.value}`}>{email.value}</a> : <Fact fact={email} />}

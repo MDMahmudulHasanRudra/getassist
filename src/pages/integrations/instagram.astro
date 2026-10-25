@@ -1,0 +1,88 @@
+---
+import DocLayout from '../../layouts/DocLayout.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import PermissionsTable from '../../components/PermissionsTable.astro';
+import { channels } from '../../config/features';
+import { instagramPermissions } from '../../config/permissions';
+
+const toc = [
+  { id: 'what', label: 'What the integration does' },
+  { id: 'requirements', label: 'What you need' },
+  { id: 'connect', label: 'How to connect' },
+  { id: 'disconnect', label: 'How to disconnect' },
+  { id: 'permissions', label: 'Permissions' },
+  { id: 'data', label: 'How your data is handled' },
+];
+---
+
+<DocLayout
+  title="Instagram DM integration"
+  description="How Get Assist connects to an Instagram professional account to handle direct messages, which permissions it asks for and why, and how to disconnect."
+  toc={toc}
+>
+  <div slot="intro">
+    <div class="flex flex-wrap items-center gap-4">
+      <h1 class="text-4xl font-semibold sm:text-5xl">Instagram DM integration</h1>
+      <StatusBadge status={channels.instagram.status} />
+    </div>
+    <p class="mt-5 max-w-[60ch] text-xl leading-relaxed text-slate">
+      Connect an Instagram professional account so its direct messages arrive in your Get Assist
+      inbox, next to your Messenger conversations.
+    </p>
+  </div>
+
+  <h2 id="what">What the integration does</h2>
+  <ul>
+    <li>Shows direct messages sent to the account you connect in your Get Assist inbox.</li>
+    <li>Sends the replies that you, your teammates or the AI write back through Instagram.</li>
+    <li>Lets the AI answer from your knowledge base and hand a conversation to your team.</li>
+  </ul>
+  <p>
+    Get Assist does not post to your account, and it does not access accounts you did not connect.
+  </p>
+
+  <h2 id="requirements">What you need</h2>
+  <ul>
+    <li>
+      An Instagram <strong>professional account</strong> (business or creator). Personal accounts
+      cannot be connected.
+    </li>
+    <li>Permission to manage that account’s messages.</li>
+  </ul>
+
+  <h2 id="connect">How to connect</h2>
+  <ol>
+    <li>Sign in to Get Assist and open the channel settings of your project.</li>
+    <li>Choose to connect Instagram. You are taken to Meta to log in.</li>
+    <li>Review the permissions shown and choose the account to connect.</li>
+    <li>Return to Get Assist. New direct messages start appearing in your inbox.</li>
+  </ol>
+
+  <h2 id="disconnect">How to disconnect or revoke access</h2>
+  <ul>
+    <li>
+      <strong>In Get Assist:</strong> open the channel settings of your project and disconnect the
+      account. New messages stop arriving straight away.
+    </li>
+    <li>
+      <strong>In Instagram or Facebook:</strong> open the settings that list apps and websites or
+      business integrations connected to your account, find Get Assist and remove it. This revokes
+      the access you granted, even if you can no longer sign in to Get Assist.
+    </li>
+  </ul>
+  <p>
+    What happens to messages already stored after you disconnect is described on the{' '}
+    <a href="/data-deletion">data deletion page</a>.
+  </p>
+
+  <h2 id="permissions">Permissions Get Assist asks for</h2>
+  <PermissionsTable permissions={instagramPermissions} />
+
+  <h2 id="data">How your data is handled</h2>
+  <p>
+    Get Assist uses the messages, usernames and attachments from your connected account only to show
+    conversations to your team, to generate suggested or automatic replies, and to send replies
+    back. The <a href="/privacy">Privacy Policy</a> explains what is stored, who processes it and
+    for how long.
+  </p>
+</DocLayout>

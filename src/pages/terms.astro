@@ -1,0 +1,195 @@
+---
+import DocLayout from '../layouts/DocLayout.astro';
+import LegalIntro from '../components/LegalIntro.astro';
+import Fact from '../components/Fact.astro';
+import EmailLink from '../components/EmailLink.astro';
+import { site } from '../config/site';
+
+const toc = [
+  { id: 'provider', label: '1. Provider and effective date' },
+  { id: 'service', label: '2. The service and eligibility' },
+  { id: 'accounts', label: '3. Accounts' },
+  { id: 'responsibilities', label: '4. Your responsibilities' },
+  { id: 'acceptable-use', label: '5. Acceptable use' },
+  { id: 'meta', label: '6. Facebook and Instagram' },
+  { id: 'ai', label: '7. AI-generated responses' },
+  { id: 'payment', label: '8. Payment and cancellation' },
+  { id: 'availability', label: '9. Availability' },
+  { id: 'ip', label: '10. Intellectual property' },
+  { id: 'data', label: '11. Confidentiality and your data' },
+  { id: 'termination', label: '12. Suspension and termination' },
+  { id: 'liability', label: '13. Liability and governing law' },
+  { id: 'complaints', label: '14. Complaints and disputes' },
+];
+---
+
+<DocLayout
+  title="Terms of Service"
+  description="The terms that apply when a business uses Get Assist, including Facebook and Instagram connections, AI-generated replies, payment and termination."
+  toc={toc}
+>
+  <div slot="intro">
+    <LegalIntro title="Terms of Service">
+      <h2 class="text-lg font-semibold">Summary in plain language</h2>
+      <ul class="mt-3 list-disc space-y-2 pl-5 text-slate">
+        <li>These terms apply to businesses that use {site.brand}.</li>
+        <li>
+          You are responsible for the Pages and accounts you connect and for how you use them with
+          your customers.
+        </li>
+        <li>
+          AI replies can be wrong. You decide whether they are sent automatically or reviewed.
+        </li>
+        <li>Your conversation data belongs to you, and you can export or delete it.</li>
+      </ul>
+    </LegalIntro>
+  </div>
+
+  <h2 id="provider">1. Provider and effective date</h2>
+  <p>
+    {site.brand} is provided by <Fact fact={site.operator.legalName} />,{' '}
+    <Fact fact={site.operator.address} />, <Fact fact={site.operator.country} /> (“we”, “us”). These
+    terms take effect on <Fact fact={site.legal.effectiveDate} />.
+  </p>
+
+  <h2 id="service">2. The service and eligibility</h2>
+  <p>
+    {site.brand} lets a business receive and answer Facebook Messenger and Instagram direct messages
+    in one inbox, with AI-assisted replies based on a knowledge base the business provides and
+    handover to people on its team. Features and their current status are listed on the{' '}
+    <a href="/features">features page</a>.
+  </p>
+  <p>
+    Who may use the service: <Fact fact={site.legal.eligibility} />
+  </p>
+
+  <h2 id="accounts">3. Accounts</h2>
+  <ul>
+    <li>Give accurate information when you create an account and keep it up to date.</li>
+    <li>Keep your sign-in details secret. You are responsible for activity under your account.</li>
+    <li>You may invite teammates; you are responsible for what they do in your account.</li>
+    <li>
+      Tell us straight away at <EmailLink email={site.emails.support} /> if you think your account
+      has been accessed without permission.
+    </li>
+  </ul>
+
+  <h2 id="responsibilities">4. Your responsibilities and permissions</h2>
+  <ul>
+    <li>Connect only Pages and accounts you are authorised to manage.</li>
+    <li>
+      Tell your customers how you handle their messages, including that you use {site.brand} and AI
+      assistance, as your local law requires.
+    </li>
+    <li>Make sure the content in your knowledge base is accurate and that you may use it.</li>
+    <li>Comply with the laws that apply to your business and your customer communications.</li>
+  </ul>
+
+  <h2 id="acceptable-use">5. Acceptable use</h2>
+  <p>You must not use {site.brand} to:</p>
+  <ul>
+    <li>send spam, unsolicited marketing or messages outside the rules Meta sets for messaging;</li>
+    <li>send unlawful, harmful, deceptive, harassing or discriminatory content;</li>
+    <li>collect sensitive data you are not allowed to collect;</li>
+    <li>try to break, overload, reverse-engineer or get around the security of the service;</li>
+    <li>resell or give access to the service to others without our written agreement.</li>
+  </ul>
+
+  <h2 id="meta">6. Facebook and Instagram integration terms</h2>
+  <p>
+    The integrations rely on Meta’s platforms. When you connect a Page or account, you must also
+    follow Meta’s terms and policies, including its rules for business messaging. Meta may change or
+    limit its platforms, which can affect what {site.brand} can do. {site.brand} is not affiliated
+    with or endorsed by Meta.
+  </p>
+  <p>
+    You can disconnect at any time inside {site.brand} or in your Facebook or Instagram settings.
+    See the <a href="/integrations/facebook">Messenger</a> and{' '}
+    <a href="/integrations/instagram">Instagram</a> integration pages.
+  </p>
+
+  <h2 id="ai">7. AI-generated responses and their limits</h2>
+  <ul>
+    <li>
+      AI replies are generated automatically from your knowledge base and the conversation. They can
+      be incomplete, out of date or wrong.
+    </li>
+    <li>
+      You choose whether replies are sent automatically or reviewed first, and you are responsible
+      for replies sent from your account.
+    </li>
+    <li>
+      Do not rely on AI replies for legal, medical, financial or safety-critical advice to your
+      customers.
+    </li>
+    <li>Hand conversations to a person whenever a customer needs one.</li>
+  </ul>
+
+  <h2 id="payment">8. Payment, renewal, cancellation and refunds</h2>
+  <p>
+    <Fact fact={site.legal.pricingAndRefunds} />
+  </p>
+
+  <h2 id="availability">9. Availability and maintenance</h2>
+  <p>
+    We work to keep {site.brand} running, but we do not promise it will be available without
+    interruption. We may carry out maintenance, and features that depend on Meta may stop working if
+    Meta changes or restricts its platforms.
+  </p>
+
+  <h2 id="ip">10. Intellectual property</h2>
+  <p>
+    We own {site.brand}, its software and its brand. You keep ownership of your content. You give us
+    the permission we need to host, process and display your content only to provide the service to
+    you.
+  </p>
+
+  <h2 id="data">11. Confidentiality and customer data ownership</h2>
+  <p>
+    Your conversation data and knowledge base belong to you. We process them on your instructions as
+    described in our <a href="/privacy">Privacy Policy</a>, and we keep them confidential except
+    where the law requires disclosure.
+  </p>
+
+  <h2 id="termination">12. Suspension, termination and data export</h2>
+  <ul>
+    <li>You can stop using {site.brand} and close your account at any time.</li>
+    <li>
+      We may suspend or close an account that breaks these terms or Meta’s policies, or that puts
+      the service or other users at risk. Where reasonable we will tell you first.
+    </li>
+    <li>
+      Before closing your account you can ask for an export of your data by emailing{' '}
+      <EmailLink email={site.emails.support} />. After closure, data is deleted as described on the{' '}
+      <a href="/data-deletion">data deletion page</a>.
+    </li>
+  </ul>
+
+  <h2 id="liability">13. Liability and governing law</h2>
+  <p>
+    To the extent the law allows, we are not liable for indirect or consequential losses, for lost
+    profits or data, or for problems caused by Meta’s platforms or by AI replies you chose to send.
+    Nothing in these terms limits liability that cannot be limited by law.
+  </p>
+  <p>
+    Liability cap:{' '}
+    <Fact
+      fact={{
+        value: null,
+        need: 'liability cap, if any (for example fees paid in the last 12 months)',
+      }}
+    />
+  </p>
+  <p>
+    Governing law and courts: <Fact fact={site.legal.governingLaw} />
+  </p>
+
+  <h2 id="complaints">14. Complaints and disputes</h2>
+  <p>
+    If you have a complaint, email <EmailLink email={site.emails.support} /> and we will try to
+    resolve it with you first.
+  </p>
+  <p>
+    <Fact fact={site.legal.complaints} />
+  </p>
+</DocLayout>

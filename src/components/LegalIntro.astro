@@ -1,0 +1,29 @@
+---
+import Fact from './Fact.astro';
+import { site } from '../config/site';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<h1 class="text-4xl font-semibold sm:text-5xl">{title}</h1>
+<dl class="mt-5 flex flex-wrap gap-x-8 gap-y-1 text-[0.9375rem] text-slate">
+  <div class="flex gap-2">
+    <dt>Effective date:</dt>
+    <dd class="font-semibold text-ink">
+      <Fact fact={site.legal.effectiveDate} />
+    </dd>
+  </div>
+  <div class="flex gap-2">
+    <dt>Last updated:</dt>
+    <dd class="font-semibold text-ink">
+      <Fact fact={site.legal.lastUpdated} />
+    </dd>
+  </div>
+</dl>
+<div class="mt-8 max-w-[68ch] rounded-xl border border-line bg-mist p-5 sm:p-6">
+  <slot />
+</div>

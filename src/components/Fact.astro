@@ -1,0 +1,12 @@
+---
+import type { OwnerFact } from '../config/owner';
+import { placeholder } from '../config/owner';
+
+interface Props {
+  fact: OwnerFact;
+}
+
+const { fact } = Astro.props;
+---
+
+{fact.value ?? <mark class="owner-placeholder">{placeholder(fact.need)}</mark>}

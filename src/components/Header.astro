@@ -1,0 +1,86 @@
+---
+import { Image } from 'astro:assets';
+import lockup from '../assets/brand/lockup.png';
+import { site } from '../config/site';
+
+const nav = [
+  { href: '/features', label: 'Features' },
+  { href: '/integrations/facebook', label: 'Integrations', match: '/integrations' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (item: (typeof nav)[number]) =>
+  path === item.href || (item.match !== undefined && path.startsWith(item.match));
+---
+
+<header class="no-print border-b border-line bg-white">
+  <div class="container-site flex h-[4.5rem] items-center justify-between gap-4">
+    <a href="/" class="-ml-1 flex items-center rounded-md p-1" aria-label={`${site.brand} home`}>
+      <Image src={lockup} alt="" height={38} densities={[1, 2]} loading="eager" />
+    </a>
+
+    <nav aria-label="Main" class="hidden items-center gap-1 md:flex">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          aria-current={isCurrent(item) ? 'page' : undefined}
+          class="rounded-md px-3 py-2 font-medium text-ink no-underline hover:text-signal aria-[current=page]:text-signal"
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href={site.appUrl} class="btn btn-secondary ml-3 min-h-10 py-2">
+        Open the app
+      </a>
+    </nav>
+
+    <details class="group relative md:hidden">
+      <summary class="flex cursor-pointer list-none items-center gap-2 rounded-md border border-line px-3 py-2 font-medium [&::-webkit-details-marker]:hidden">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+          <path
+            d="M2 5h14M2 9h14M2 13h14"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            class="group-open:hidden"
+          ></path>
+          <path
+            d="M4 4l10 10M14 4L4 14"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            class="hidden group-open:block"
+          ></path>
+        </svg>
+        Menu
+      </summary>
+      <nav
+        aria-label="Main"
+        class="absolute right-0 z-20 mt-2 w-60 rounded-xl border border-line bg-white p-2 shadow-[0_12px_32px_-12px_rgb(3_26_65/0.25)]"
+      >
+        <ul>
+          {nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isCurrent(item) ? 'page' : undefined}
+                class="block rounded-md px-3 py-2.5 font-medium text-ink no-underline hover:bg-mist aria-[current=page]:text-signal"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+          <li class="mt-1 border-t border-line pt-1">
+            <a
+              href={site.appUrl}
+              class="block rounded-md px-3 py-2.5 font-semibold no-underline hover:bg-mist"
+            >
+              Open the app
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>

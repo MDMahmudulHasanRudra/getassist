@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+import { features } from '../config/features';
+---
+
+<Base
+  title="Features"
+  description="What Get Assist does: a unified inbox, AI replies from your knowledge base, human handover and team tools, each with its current status."
+>
+  <div class="container-site pt-14 pb-6 lg:pt-20">
+    <h1 class="max-w-[20ch] text-4xl font-semibold sm:text-5xl">Features</h1>
+    <p class="mt-5 max-w-[56ch] text-xl leading-relaxed text-slate">
+      Everything Get Assist does, in plain words. The status next to each feature shows whether you
+      can use it today.
+    </p>
+  </div>
+
+  <section aria-label="Feature list" class="container-site">
+    <ul class="mt-8 divide-y divide-line border-y border-line">
+      {features.map((f) => (
+        <li class="grid gap-2 py-6 sm:grid-cols-[minmax(12rem,16rem)_1fr_auto] sm:items-baseline sm:gap-8">
+          <h2 class="text-lg">{f.name}</h2>
+          <p class="max-w-[58ch] text-slate">{f.summary}</p>
+          <div class="sm:justify-self-end">
+            <StatusBadge status={f.status} />
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-10 grid gap-3 text-[0.9375rem] text-slate sm:grid-cols-3">
+      <p>
+        <StatusBadge status="available" /> <span class="ml-1">You can use it now.</span>
+      </p>
+      <p>
+        <StatusBadge status="beta" /> <span class="ml-1">Usable, still being refined.</span>
+      </p>
+      <p>
+        <StatusBadge status="coming-soon" /> <span class="ml-1">Not available yet.</span>
+      </p>
+    </div>
+
+    <div class="mt-16 flex flex-wrap gap-3">
+      <a href="/integrations/facebook" class="btn btn-secondary">
+        Messenger integration
+      </a>
+      <a href="/integrations/instagram" class="btn btn-secondary">
+        Instagram integration
+      </a>
+      <a href="/contact" class="btn btn-primary">
+        Contact us
+      </a>
+    </div>
+  </section>
+</Base>

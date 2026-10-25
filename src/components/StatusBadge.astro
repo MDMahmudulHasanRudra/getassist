@@ -1,0 +1,30 @@
+---
+import { statusLabel, type Status } from '../config/features';
+
+interface Props {
+  status: Status;
+}
+
+const { status } = Astro.props;
+
+const tone: Record<Status, string> = {
+  available: 'bg-teal text-white border-teal',
+  beta: 'bg-white text-violet border-violet',
+  'coming-soon': 'bg-white text-slate border-line',
+  'pending-meta': 'bg-white text-slate border-line',
+};
+---
+
+<span
+  class:list={[
+    'inline-flex shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[0.8125rem] leading-5 font-semibold whitespace-nowrap',
+    tone[status],
+  ]}
+>
+  {status !== 'available' && (
+    <svg width="7" height="7" viewBox="0 0 8 8" aria-hidden="true">
+      <circle cx="4" cy="4" r="3" fill="none" stroke="currentColor" stroke-width="1.6" />
+    </svg>
+  )}
+  {statusLabel[status]}
+</span>

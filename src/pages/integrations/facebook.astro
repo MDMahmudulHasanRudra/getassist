@@ -1,0 +1,84 @@
+---
+import DocLayout from '../../layouts/DocLayout.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import PermissionsTable from '../../components/PermissionsTable.astro';
+import { channels } from '../../config/features';
+import { facebookPermissions } from '../../config/permissions';
+
+const toc = [
+  { id: 'what', label: 'What the integration does' },
+  { id: 'connect', label: 'How to connect' },
+  { id: 'disconnect', label: 'How to disconnect' },
+  { id: 'permissions', label: 'Permissions' },
+  { id: 'data', label: 'How your data is handled' },
+];
+---
+
+<DocLayout
+  title="Facebook Messenger integration"
+  description="How Get Assist connects to a Facebook Page to handle Messenger conversations, which permissions it asks for and why, and how to disconnect."
+  toc={toc}
+>
+  <div slot="intro">
+    <div class="flex flex-wrap items-center gap-4">
+      <h1 class="text-4xl font-semibold sm:text-5xl">Facebook Messenger integration</h1>
+      <StatusBadge status={channels.facebook.status} />
+    </div>
+    <p class="mt-5 max-w-[60ch] text-xl leading-relaxed text-slate">
+      Connect a Facebook Page so the messages people send it through Messenger arrive in your Get
+      Assist inbox, where the AI and your team can answer them.
+    </p>
+  </div>
+
+  <h2 id="what">What the integration does</h2>
+  <ul>
+    <li>Shows Messenger conversations sent to the Page you connect in your Get Assist inbox.</li>
+    <li>
+      Sends the replies that you, your teammates or the AI write back to the customer through
+      Messenger.
+    </li>
+    <li>Lets the AI answer from your knowledge base and hand a conversation to your team.</li>
+  </ul>
+  <p>
+    Get Assist only works with the Pages you choose. It does not post to your Page, read your
+    personal Facebook messages, or access Pages you did not select.
+  </p>
+
+  <h2 id="connect">How to connect</h2>
+  <ol>
+    <li>Sign in to Get Assist and open the channel settings of your project.</li>
+    <li>Choose to connect Facebook Messenger. You are taken to Facebook to log in.</li>
+    <li>Review the permissions Facebook shows and choose the Page or Pages to connect.</li>
+    <li>Return to Get Assist. New messages to that Page start appearing in your inbox.</li>
+  </ol>
+  <p>You need to be able to manage the Page in Facebook to connect it.</p>
+
+  <h2 id="disconnect">How to disconnect or revoke access</h2>
+  <p>You can stop Get Assist from accessing a Page in either of two ways:</p>
+  <ul>
+    <li>
+      <strong>In Get Assist:</strong> open the channel settings of your project and disconnect the
+      Page. New messages stop arriving straight away.
+    </li>
+    <li>
+      <strong>In Facebook:</strong> open the settings for business integrations or apps connected to
+      your account or Page, find Get Assist and remove it. This revokes the access you granted, even
+      if you can no longer sign in to Get Assist.
+    </li>
+  </ul>
+  <p>
+    What happens to messages already stored after you disconnect is described on the{' '}
+    <a href="/data-deletion">data deletion page</a>.
+  </p>
+
+  <h2 id="permissions">Permissions Get Assist asks for</h2>
+  <PermissionsTable permissions={facebookPermissions} />
+
+  <h2 id="data">How your data is handled</h2>
+  <p>
+    Get Assist uses the messages, sender names and attachments from your connected Page only to show
+    conversations to your team, to generate suggested or automatic replies, and to send replies
+    back. The <a href="/privacy">Privacy Policy</a> explains what is stored, who processes it and
+    for how long.
+  </p>
+</DocLayout>
