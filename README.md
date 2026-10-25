@@ -1,4 +1,4 @@
-# getassist.pro
+# getassist
 
 Static marketing, integration and legal website for **Get Assist**.
 Astro (static output) + TypeScript strict + Tailwind CSS 4, served by unprivileged
