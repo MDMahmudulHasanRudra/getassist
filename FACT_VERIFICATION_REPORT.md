@@ -46,7 +46,7 @@ is still to do (see the last section).
 3. Retention: messages, attachments, AI transcripts, logs, backups; whether inactive accounts are purged.
 4. Meta deauthorize and data-deletion callbacks: endpoint, what they delete, confirmation code/status URL.
 5. Disconnect behaviour for Pages and Instagram accounts.
-6. Cookies set by app.getassist.pro (runtime audit).
+6. Cookies set by the app at zoventio.udboy.com (runtime audit).
 7. Actual providers and regions: VPS host and datacenter, email sender, payment processor, monitoring.
 8. Exact Graph API scopes requested and the App Review submission.
 9. Which features are live in production (for `features.ts`).

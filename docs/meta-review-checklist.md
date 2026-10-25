@@ -14,6 +14,13 @@ over HTTPS and every `[[OWNER: …]]` placeholder is filled.
 | Contact email                    | `privacy@getassist.pro` (create and test the mailbox first)                                                                                  |
 | App name / display name          | `Get Assist` (exact spelling)                                                                                                                |
 
+## App domain note
+
+The website and legal pages are on `getassist.pro`, but the SaaS (and its OAuth redirect
+URIs) currently runs on `zoventio.udboy.com`. Meta's App Domains must cover the domains your
+app actually uses, so list both until the SaaS moves to `app.getassist.pro`. Do not change
+the SaaS redirect URIs as part of website work.
+
 ## Integration setup to match on the site
 
 - Use case: Facebook Login, one platform-owned Meta app. Instagram is connected through the
@@ -39,4 +46,4 @@ over HTTPS and every `[[OWNER: …]]` placeholder is filled.
 
 OAuth redirect URIs, webhooks (callback URL and verify token), the data deletion
 callback URL, Business Verification and permissions requests are configured in the
-Get Assist SaaS (app.getassist.pro) and the Meta App Dashboard, not on this site.
+Get Assist SaaS (currently https://zoventio.udboy.com; app.getassist.pro after the planned migration) and the Meta App Dashboard, not on this site.

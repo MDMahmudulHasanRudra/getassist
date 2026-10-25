@@ -15,6 +15,14 @@ production-verified yet (no access to its code or servers) — see
 | Handoff asks for /security, /cookies, /subprocessors, /ai-transparency; brief says exactly 8 pages | **Add all four.**                                                                       |
 | New tagline vs "hero stays Customer support, simplified with AI."                                  | **Hero unchanged; tagline used in the footer and Open Graph image.**                    |
 
+## Final hosting decision (26 Oct 2026)
+
+Supersedes the "support both" answer above. The website is hosted on **Cloudflare Pages**
+only; `www` redirects to the apex; the "Open the app" link points to the current SaaS at
+`https://zoventio.udboy.com` until the postponed migration to `app.getassist.pro`. The SaaS
+backend, its domain, `NEXTAUTH_URL`, callbacks, Docker, PostgreSQL, Meta OAuth, WhatsApp
+and Telegram are out of scope and untouched.
+
 ## What went into the site
 
 | Item                                                    | Value used                                                                                                                                         | Status                                                     | Where                                                   |
@@ -42,4 +50,4 @@ production-verified yet (no access to its code or servers) — see
 | Telegram                                                | Owner calls it beta; not shown until verified accessible to users                                                                                  | OPEN                                                       | `site.telegramLive = false`                             |
 | Feature statuses                                        | All "Coming soon" until production-verified                                                                                                        | OPEN                                                       | `features.ts`                                           |
 | Facebook Page posting/comments, leads, social analytics | Not listed: would need extra Meta permissions not in review                                                                                        | OWNER_CONFIRMED as future                                  | —                                                       |
-| Hosting                                                 | VPS Docker and Cloudflare Pages both supported                                                                                                     | OWNER_CONFIRMED (chat)                                     | `docs/RUNBOOK.md`, `docs/CLOUDFLARE_PAGES.md`           |
+| Hosting                                                 | **Final (26 Oct 2026): Cloudflare Pages only**, automatic deploys from `main`, previews for other branches. Not on the VPS.                        | OWNER_CONFIRMED                                            | `CLOUDFLARE_DEPLOYMENT.md`                              |

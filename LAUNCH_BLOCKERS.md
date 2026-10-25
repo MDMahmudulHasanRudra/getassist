@@ -23,7 +23,7 @@ are filled. Items marked ⚠ do not show on the site but must be done before lau
 - ⛔ Retention of messages, logs and backups (`retention.messages`, `logs`, `backups`).
 - ⛔ What happens to stored conversations after disconnecting (`legal.afterDisconnect`).
 - ⛔ What the Meta deauthorize and data-deletion callbacks do (`legal.metaDeletionCallback`).
-- ⛔ Cookies set by app.getassist.pro (`legal.appCookies`).
+- ⛔ Cookies set by the app at zoventio.udboy.com (`legal.appCookies`).
 - ⛔ Each Meta permission checked against the App Dashboard and screencast (`permissions.ts`, set `confirmed: true`).
 - ⚠ Live SaaS API domain for OAuth and webhooks (not guessed from getassist.pro).
 - ⚠ Which features are live, to update `features.ts` badges.
@@ -40,4 +40,5 @@ are filled. Items marked ⚠ do not show on the site but must be done before lau
 
 ## Deployment
 
-- ⚠ Choose VPS Docker or Cloudflare Pages; VPS access or Cloudflare account access; DNS records. See `docs/RUNBOOK.md` and `docs/CLOUDFLARE_PAGES.md`.
+- ⚠ Create the Cloudflare Pages project, custom domains and www redirect (owner action). See `CLOUDFLARE_DEPLOYMENT.md`.
+- ⚠ Remove the old staging container from the VPS (owner approval needed). See `CLOUDFLARE_DEPLOYMENT.md` → Leftover.

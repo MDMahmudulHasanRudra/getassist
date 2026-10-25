@@ -10,7 +10,8 @@ export const site = {
   brand: 'Get Assist',
   domain: 'getassist.pro',
   url: 'https://getassist.pro',
-  appUrl: 'https://app.getassist.pro',
+  /** Current SaaS address. Moves to https://app.getassist.pro when the owner migrates the app. */
+  appUrl: 'https://zoventio.udboy.com',
   heroTitle: 'Customer support, simplified with AI.',
   heroLead:
     'Bring your customer conversations, support team and AI-powered assistance together in one workspace.',
@@ -82,7 +83,7 @@ export const site = {
       null,
       'regions of the VPS, AI providers and email provider, and the safeguards used for transfers',
     ),
-    appCookies: fact(null, 'cookies the app at app.getassist.pro sets, from a runtime audit'),
+    appCookies: fact(null, 'cookies the app (zoventio.udboy.com) sets, from a runtime audit'),
     liabilityCap: fact(null, 'liability cap, after legal review'),
     afterDisconnect: fact(
       null,

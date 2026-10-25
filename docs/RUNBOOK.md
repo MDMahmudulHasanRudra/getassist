@@ -1,4 +1,8 @@
-# Runbook — getassist.pro
+# Runbook — getassist.pro (unused VPS fallback)
+
+> **Not used.** The owner decided on 26 Oct 2026 to host the website on Cloudflare Pages
+> ([CLOUDFLARE_DEPLOYMENT.md](../CLOUDFLARE_DEPLOYMENT.md)). Do not deploy the website to the
+> VPS. This file is kept only as a reference.
 
 The site is a static Astro build served by `nginx-unprivileged` in one container
 (`getassist-web`), bound to `127.0.0.1:${WEB_PORT:-8081}` on the VPS. A reverse proxy

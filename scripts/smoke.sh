@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Smoke tests.
-#   scripts/smoke.sh http://127.0.0.1:8081 local    container checks
+#   scripts/smoke.sh https://<branch>.<project>.pages.dev preview   Cloudflare preview / wrangler
+#   scripts/smoke.sh http://127.0.0.1:8081 local    container checks (adds /healthz)
 #   scripts/smoke.sh https://getassist.pro public   adds TLS, www and HTTP->HTTPS checks
 # Before DNS points at the VPS, test the public checks with:
 #   RESOLVE_IP=<VPS_IP> scripts/smoke.sh https://getassist.pro public
@@ -25,9 +26,13 @@ location() { "${CURL[@]}" -o /dev/null -w '%{redirect_url}' "$1"; }
 for path in / /features /integrations/facebook /integrations/instagram /contact /privacy /terms /data-deletion /security /cookies /subprocessors /ai-transparency /robots.txt /sitemap-index.xml; do
   check "GET $path" 200 "$(code "$BASE$path")"
 done
-check "GET /healthz" 200 "$(code "$BASE/healthz")"
+# /healthz exists only in the nginx container.
+[[ "$MODE" == "local" ]] && check "GET /healthz" 200 "$(code "$BASE/healthz")"
 check "404 page" 404 "$(code "$BASE/this-page-does-not-exist")"
-check "/features/ -> /features" "301" "$(code "$BASE/features/")"
+slash="$(code "$BASE/features/")"
+# nginx answers 301, Cloudflare Pages 308; both are permanent.
+[[ "$slash" == 301 || "$slash" == 308 ]] && slash=permanent
+check "/features/ -> /features" permanent "$slash"
 
 headers="$("${CURL[@]}" -I "$BASE/privacy" | tr -d '\r' | tr 'A-Z' 'a-z')"
 for h in "content-security-policy:" "x-content-type-options: nosniff" "x-frame-options: deny" "referrer-policy:" "permissions-policy:"; do

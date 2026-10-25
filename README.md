@@ -1,14 +1,15 @@
 # getassist
 
-Static marketing, integration, legal and trust website for **Get Assist**.
-Astro (static output) + TypeScript strict + Tailwind CSS 4, served by unprivileged
-nginx in a Docker container. No JavaScript is shipped to the browser, no cookies, no
-analytics, no third-party requests.
+Static marketing, integration, legal and trust website for **Get Assist**, hosted on
+**Cloudflare Pages** with automatic deployments from GitHub `main`. Astro (static output) +
+TypeScript strict + Tailwind CSS 4. No JavaScript is shipped to the browser, no cookies, no
+analytics, no third-party requests, no server functions.
+
+The "Open the app" link goes to the current SaaS at https://zoventio.udboy.com.
 
 ## Requirements
 
-- Node 24 (see `.nvmrc`) for local development
-- Docker with Compose v2 for the container (the VPS needs only Docker and git)
+- Node 24 (see `.nvmrc`)
 
 ## Commands
 
@@ -25,15 +26,11 @@ npm run build:pages        # Cloudflare Pages build (placeholders allowed on pre
 npm run verify             # check + lint + build + check:output
 ```
 
-Container:
+Deploy: push to `main` — see [CLOUDFLARE_DEPLOYMENT.md](CLOUDFLARE_DEPLOYMENT.md).
 
-```bash
-ALLOW_PLACEHOLDERS=1 docker compose up -d --build   # local/staging build with placeholders
-docker compose up -d --build                        # production build (fails on placeholders)
-```
-
-Deploy on the VPS: `scripts/deploy.sh` — see [docs/RUNBOOK.md](docs/RUNBOOK.md).
-Or on Cloudflare Pages — see [docs/CLOUDFLARE_PAGES.md](docs/CLOUDFLARE_PAGES.md).
+The `Dockerfile`, `docker-compose.yml`, `nginx/`, `scripts/deploy.sh` and
+[docs/RUNBOOK.md](docs/RUNBOOK.md) are an unused VPS fallback kept for reference; the
+website is not deployed to the VPS.
 
 ## Where things live
 
