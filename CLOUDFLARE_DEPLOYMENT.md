@@ -169,19 +169,14 @@ locally, then push to `main` (or to a branch first for a preview).
 - [ ] `scripts/smoke.sh https://getassist.pro public` passes
 - [ ] "Open the app" goes to https://zoventio.udboy.com
 - [ ] Final 1024 × 1024 app icon ready; Meta Dashboard URLs pasted (`docs/meta-review-checklist.md`)
-- [ ] Remove the old staging container from the VPS (see below)
 
-## Leftover from the earlier VPS test
+## Earlier VPS test (removed)
 
-On 26 Oct 2026, before this decision, a **staging** copy of the website was started on the
-VPS as container `getassist-web` (`127.0.0.1:8081`, not reachable from the internet; Caddy
-was not changed). It should be removed with the owner's approval:
+On 26 Oct 2026, before the hosting decision, a staging copy of the website ran on the VPS as
+container `getassist-web` (`127.0.0.1:8081`, never public; Caddy was never changed). With the
+owner's approval it was removed the same day: container, its network, image
+`getassist-web:3df3d350290d`, `~/getassist-web`, `~/getassist.pro.caddy` and the
+`docker-ps` snapshot files. The SaaS containers and the Caddyfile were verified unchanged.
 
-```bash
-cd ~/getassist-web && docker compose down && docker image rm $(docker image ls getassist-web -q)
-```
-
-Also delete `~/getassist-web`, `~/getassist.pro.caddy` and the
-`~/docker-ps-*-getassist-web.txt` files. **Do not** append `~/getassist.pro.caddy` to the
-Caddyfile. The `Dockerfile`, `docker-compose.yml`, `nginx/` and `scripts/deploy.sh` stay in
-the repository as an unused fallback; Cloudflare ignores them.
+The `Dockerfile`, `docker-compose.yml`, `nginx/` and `scripts/deploy.sh` stay in the
+repository as an unused fallback; Cloudflare ignores them.

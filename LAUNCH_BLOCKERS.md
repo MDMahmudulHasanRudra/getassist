@@ -41,4 +41,3 @@ are filled. Items marked ⚠ do not show on the site but must be done before lau
 ## Deployment
 
 - ⚠ Create the Cloudflare Pages project, custom domains and www redirect (owner action). See `CLOUDFLARE_DEPLOYMENT.md`.
-- ⚠ Remove the old staging container from the VPS (owner approval needed). See `CLOUDFLARE_DEPLOYMENT.md` → Leftover.
