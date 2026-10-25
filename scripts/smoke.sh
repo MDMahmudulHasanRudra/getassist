@@ -22,7 +22,7 @@ check() { # description expected actual
 code() { "${CURL[@]}" -o /dev/null -w '%{http_code}' "$1"; }
 location() { "${CURL[@]}" -o /dev/null -w '%{redirect_url}' "$1"; }
 
-for path in / /features /integrations/facebook /integrations/instagram /contact /privacy /terms /data-deletion /robots.txt /sitemap-index.xml; do
+for path in / /features /integrations/facebook /integrations/instagram /contact /privacy /terms /data-deletion /security /cookies /subprocessors /ai-transparency /robots.txt /sitemap-index.xml; do
   check "GET $path" 200 "$(code "$BASE$path")"
 done
 check "GET /healthz" 200 "$(code "$BASE/healthz")"

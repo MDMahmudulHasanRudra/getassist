@@ -1,0 +1,13 @@
+# Cloudflare Pages response headers (ignored by the nginx container, which
+# sets the same headers in nginx/security-headers.conf). Keep both in sync.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+  Cache-Control: no-cache
+
+/_astro/*
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable

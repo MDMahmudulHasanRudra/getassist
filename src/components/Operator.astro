@@ -1,0 +1,8 @@
+---
+import { site } from '../config/site';
+
+const { legalName, address, location, statement } = site.operator;
+const parts = [legalName, address, location].filter(Boolean).join(', ');
+---
+
+{legalName ? `${site.brand} is operated by ${parts}.` : statement}

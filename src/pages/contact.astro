@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import EmailLink from '../components/EmailLink.astro';
-import Fact from '../components/Fact.astro';
+import Operator from '../components/Operator.astro';
 import { site } from '../config/site';
 
 const rows = [
@@ -33,13 +33,9 @@ const rows = [
       ))}
     </dl>
 
-    <h2 class="mt-14 text-xl">Company</h2>
-    <address class="mt-3 text-slate not-italic">
-      <Fact fact={site.operator.legalName} />
-      <br />
-      <Fact fact={site.operator.address} />
-      <br />
-      <Fact fact={site.operator.country} />
-    </address>
+    <h2 class="mt-14 text-xl">Who runs Get Assist</h2>
+    <p class="mt-3 max-w-[60ch] text-slate">
+      <Operator />
+    </p>
   </div>
 </Base>

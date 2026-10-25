@@ -13,8 +13,10 @@ const toc = [
   { id: 'timeframe', label: 'How long it takes' },
   { id: 'status', label: 'Checking the status' },
   { id: 'disconnect', label: 'Disconnecting a Page or account' },
+  { id: 'inactive', label: 'If you stop using Get Assist' },
   { id: 'customers', label: 'If you messaged a business' },
 ];
+const l = site.legal;
 ---
 
 <DocLayout
@@ -26,8 +28,9 @@ const toc = [
     <LegalIntro title="Data deletion instructions">
       <p class="text-slate">
         To have your data deleted, email <EmailLink email={site.emails.privacy} /> with the subject
-        “Data deletion request”. You do not need a {site.brand} account to ask. The steps below
-        explain what to include and what happens next.
+        “Data deletion request”. Workspace owners can also write to{' '}
+        <EmailLink email={site.emails.support} />. You do not need a {site.brand} account to ask.
+        The steps below explain what to include and what happens next.
       </p>
     </LegalIntro>
   </div>
@@ -38,6 +41,7 @@ const toc = [
   </p>
   <ul>
     <li>your name and the email address you use with {site.brand}, if you have an account;</li>
+    <li>the workspace name, if you are a workspace owner;</li>
     <li>
       the Facebook Page name or Instagram username concerned, if your request is about a connected
       Page or account;
@@ -52,7 +56,8 @@ const toc = [
 
   <h2 id="verify">How we verify the request</h2>
   <p>
-    We delete data only for the person or business it belongs to. Before deleting we may ask you to:
+    We delete data only for the person or business it belongs to. Requests to delete a workspace
+    must come from an authorised workspace owner. Before deleting we may ask you to:
   </p>
   <ul>
     <li>reply from the email address linked to the {site.brand} account; or</li>
@@ -67,7 +72,9 @@ const toc = [
 
   <h2 id="deleted">What is deleted or anonymised</h2>
   <ul>
-    <li>Account requests: your account profile, team membership and settings.</li>
+    <li>
+      Workspace requests: account profiles, team membership, settings and knowledge base content.
+    </li>
     <li>
       Connected Page or account requests: access tokens, conversation messages, customer
       identifiers, attachments and notes for that Page or account.
@@ -76,20 +83,19 @@ const toc = [
       Requests from people who messaged a business: your messages, identifiers and attachments in
       that business’s inbox.
     </li>
-    <li>Knowledge base content belonging to a deleted account.</li>
   </ul>
 
   <h2 id="kept">What we may keep</h2>
   <p>
     We may keep limited records where the law requires it, such as invoices and payment records, and
-    a record that a deletion request was made and completed. Data in backups is removed when those
+    a record that a deletion request was made and completed. Data in backups is removed as those
     backups expire: <Fact fact={site.retention.backups} />
   </p>
 
   <h2 id="timeframe">How long it takes</h2>
   <p>
-    We confirm that we received your request and complete it within{' '}
-    <Fact fact={site.legal.deletionTimeframe} /> of verifying it.
+    We confirm that we received your request, then delete or anonymise the data within{' '}
+    <Fact fact={l.deletionTimeframe} /> of verifying it.
   </p>
 
   <h2 id="status">Checking the status of your request</h2>
@@ -100,27 +106,21 @@ const toc = [
 
   <h2 id="disconnect">When a Page or Instagram account is disconnected</h2>
   <p>
-    If a business disconnects a Page or Instagram account inside {site.brand}, or removes{' '}
-    {site.brand}
-    in its Facebook or Instagram settings, we stop receiving new messages for it straight away.
+    Disconnecting and deleting are different. If a business disconnects a Page or Instagram account
+    inside {site.brand}, or removes {site.brand} in its Facebook or Instagram settings, we stop
+    receiving new messages for it straight away.
   </p>
   <p>
-    Conversations already stored:{' '}
-    <Fact
-      fact={{
-        value: null,
-        need: 'what happens to stored conversations after disconnecting (kept until deletion request, or deleted after N days)',
-      }}
-    />
+    Conversations already stored: <Fact fact={l.afterDisconnect} />
   </p>
   <p>
-    Automatic deletion when you remove {site.brand} in Facebook settings:{' '}
-    <Fact
-      fact={{
-        value: null,
-        need: 'confirm whether the app handles Meta’s data deletion callback, and what it deletes',
-      }}
-    />
+    When you remove {site.brand} in your Facebook settings: <Fact fact={l.metaDeletionCallback} />
+  </p>
+
+  <h2 id="inactive">If you stop using {site.brand}</h2>
+  <p>
+    Account data after a customer stops using {site.brand}: <Fact fact={site.retention.account} />
+    You can ask us to delete it earlier at any time using the steps above.
   </p>
 
   <h2 id="customers">If you messaged a business that uses {site.brand}</h2>

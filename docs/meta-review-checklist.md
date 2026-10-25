@@ -11,8 +11,19 @@ over HTTPS and every `[[OWNER: …]]` placeholder is filled.
 | Data Deletion Instructions URL   | `https://getassist.pro/data-deletion`                                                                                                        |
 | Website (Platform → Website) URL | `https://getassist.pro`                                                                                                                      |
 | App icon (1024 × 1024)           | **Not ready.** Needs the final icon file (SVG or ≥ 2048 px PNG). Do not upscale `public/icon-512.png`. See OPEN_QUESTIONS.md → Brand assets. |
-| Contact email                    | The privacy email from `src/config/site.ts` (`emails.privacy`) once set                                                                      |
+| Contact email                    | `privacy@getassist.pro` (create and test the mailbox first)                                                                                  |
 | App name / display name          | `Get Assist` (exact spelling)                                                                                                                |
+
+## Integration setup to match on the site
+
+- Use case: Facebook Login, one platform-owned Meta app. Instagram is connected through the
+  Facebook Page linked to an Instagram professional account (the integration pages say this).
+- If the app actually requests `instagram_business_*` permissions (Instagram Login), the
+  Instagram page and `src/config/permissions.ts` must be changed before submitting.
+- Reviewer needs: a test user, a test Page, a linked Instagram professional account, and an
+  end-to-end screencast whose wording matches the permissions table.
+- Data Deletion: give either the callback URL from the SaaS or the Data Deletion
+  Instructions URL above; the callback's behaviour must match what the data deletion page says.
 
 ## Checks before submitting
 

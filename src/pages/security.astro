@@ -1,0 +1,75 @@
+---
+import DocLayout from '../layouts/DocLayout.astro';
+import LegalIntro from '../components/LegalIntro.astro';
+import Fact from '../components/Fact.astro';
+import EmailLink from '../components/EmailLink.astro';
+import { site } from '../config/site';
+
+const toc = [
+  { id: 'app', label: 'Protecting your workspace' },
+  { id: 'meta', label: 'Facebook and Instagram access' },
+  { id: 'ai', label: 'AI providers' },
+  { id: 'website', label: 'This website' },
+  { id: 'report', label: 'Reporting a security issue' },
+];
+const c = site.commitments;
+---
+
+<DocLayout
+  title="Security"
+  description="How Get Assist protects workspace data, connected Facebook and Instagram accounts, and this website, and how to report a security issue."
+  toc={toc}
+>
+  <div slot="intro">
+    <LegalIntro title="Security">
+      <p class="text-slate">
+        This page describes only the security measures we have checked are in place. It will grow as
+        more are verified. We do not hold security certifications.
+      </p>
+    </LegalIntro>
+  </div>
+
+  <h2 id="app">Protecting your workspace</h2>
+  <p>
+    <Fact fact={site.legal.securityMeasures} />
+  </p>
+  {c.encryptionInTransit && <p>Data is encrypted in transit.</p>}
+  {c.encryptionAtRest && <p>Data is encrypted at rest.</p>}
+
+  <h2 id="meta">Facebook and Instagram access</h2>
+  <ul>
+    <li>
+      You connect a Page or account through Meta’s own login screen. {site.brand} never asks for
+      your Facebook or Instagram password.
+    </li>
+    <li>You choose which Pages or accounts to connect, and can disconnect them at any time.</li>
+    <li>
+      Removing {site.brand} in your Facebook or Instagram settings revokes its access, even if you
+      cannot sign in to {site.brand}.
+    </li>
+  </ul>
+
+  <h2 id="ai">AI providers</h2>
+  <p>
+    Each workspace chooses its own AI provider and model. Message content is sent to that provider
+    only when the workspace turns on AI features. See our{' '}
+    <a href="/ai-transparency">AI transparency page</a>.
+  </p>
+
+  <h2 id="website">This website ({site.domain})</h2>
+  <ul>
+    <li>No cookies, analytics or third-party scripts.</li>
+    <li>
+      A strict content security policy that only allows files from {site.domain} itself, and blocks
+      the site from being framed by other sites.
+    </li>
+    <li>No forms and no sign-in, so the website itself collects no personal data.</li>
+  </ul>
+
+  <h2 id="report">Reporting a security issue</h2>
+  <p>
+    If you find a security problem in {site.brand}, email <EmailLink email={site.emails.support} />{' '}
+    with the subject “Security”. Please give us a chance to fix it before telling others, and do not
+    access data that is not yours.
+  </p>
+</DocLayout>

@@ -3,9 +3,8 @@ import DocLayout from '../layouts/DocLayout.astro';
 import LegalIntro from '../components/LegalIntro.astro';
 import Fact from '../components/Fact.astro';
 import EmailLink from '../components/EmailLink.astro';
+import Operator from '../components/Operator.astro';
 import { site } from '../config/site';
-import { placeholder } from '../config/owner';
-import { subprocessors } from '../config/subprocessors';
 
 const toc = [
   { id: 'who-we-are', label: '1. Who we are' },
@@ -25,6 +24,7 @@ const toc = [
   { id: 'changes', label: '15. Changes to this policy' },
 ];
 const c = site.commitments;
+const l = site.legal;
 ---
 
 <DocLayout
@@ -37,17 +37,18 @@ const c = site.commitments;
       <h2 class="text-lg font-semibold">Summary in plain language</h2>
       <ul class="mt-3 list-disc space-y-2 pl-5 text-slate">
         <li>
-          Businesses use {site.brand} to answer customer messages from their Facebook Page and
-          Instagram professional account.
+          Businesses use {site.brand} to manage customer conversations, coordinate their team and
+          use AI-assisted replies.
         </li>
         <li>
-          For those messages we act on the business’s instructions. The business decides what is
-          collected and how it is used.
+          For their customers’ messages we act on the business’s instructions. The business decides
+          what is collected and how it is used.
         </li>
         <li>
-          We use message content to show conversations to the business’s team, to suggest or send AI
-          replies from the business’s knowledge base, and to send replies back.
+          If a workspace turns on AI features, relevant message content is sent to the AI provider
+          that workspace chose, so it can suggest or write a reply.
         </li>
+        {c.noSellingData && <li>We do not sell customer data.</li>}
         <li>
           You can disconnect a Page or account at any time and ask us to delete data. See our{' '}
           <a href="/data-deletion">data deletion page</a>.
@@ -59,11 +60,11 @@ const c = site.commitments;
 
   <h2 id="who-we-are">1. Who we are and how to contact us</h2>
   <p>
-    {site.brand} is operated by <Fact fact={site.operator.legalName} />, registered at{' '}
-    <Fact fact={site.operator.address} />, <Fact fact={site.operator.country} /> (“we”, “us”).
+    <Operator /> In this policy “we” and “us” mean the operator of {site.brand}.
   </p>
   <p>
-    For any privacy question or request, email <EmailLink email={site.emails.privacy} />.
+    For any privacy question or request, email <EmailLink email={site.emails.privacy} />. For
+    anything else, email <EmailLink email={site.emails.general} />.
   </p>
 
   <h2 id="scope">2. Scope and our roles</h2>
@@ -72,14 +73,14 @@ const c = site.commitments;
   </p>
   <ul>
     <li>
-      <strong>We are the controller</strong> of data about visitors to this website and about people
-      who hold a {site.brand} account (for example account holders and their teammates).
+      <strong>We decide how data is used (controller)</strong> for visitors to this website and for
+      people who hold a {site.brand} account, such as account owners and their teammates.
     </li>
     <li>
-      <strong>We are a processor</strong> of customer conversation data. When a business connects
-      its Facebook Page or Instagram account, the messages its customers send are processed on that
-      business’s instructions. The business is the controller and is responsible for telling its own
-      customers how their data is used.
+      <strong>We process data on a business’s instructions (processor)</strong> for the
+      conversations that business handles in {site.brand}. When a business connects its Facebook
+      Page or Instagram account, the messages its customers send are processed for that business.
+      The business is responsible for telling its own customers how their data is used.
     </li>
   </ul>
 
@@ -87,15 +88,11 @@ const c = site.commitments;
   <p>When you create and use a {site.brand} account we process:</p>
   <ul>
     <li>your name, email address and sign-in credentials;</li>
-    <li>the names and email addresses of teammates you invite;</li>
-    <li>project and workspace settings you choose;</li>
+    <li>the names, email addresses and roles of teammates you invite;</li>
+    <li>workspace and project settings you choose;</li>
     <li>
-      billing details needed to charge for the service, where a paid plan applies. Payment card
-      details are handled by our payment provider:{' '}
-      <Fact
-        fact={{ value: null, need: 'payment provider, or state that no payments are taken yet' }}
-      />
-      .
+      billing details needed to charge for the service, where a paid plan applies. Payment provider:{' '}
+      <Fact fact={l.paymentProvider} />
     </li>
     <li>technical logs such as sign-in times and IP addresses, used to keep the service secure.</li>
   </ul>
@@ -111,7 +108,7 @@ const c = site.commitments;
     <li>basic profile information of the person who connected the account, such as their name.</li>
   </ul>
   <p>
-    The exact permissions are listed on the <a href="/integrations/facebook">Messenger</a> and{' '}
+    The permissions are listed on the <a href="/integrations/facebook">Messenger</a> and{' '}
     <a href="/integrations/instagram">Instagram</a> integration pages. We use this data only to
     provide the messaging features the business turned on.
   </p>
@@ -125,21 +122,22 @@ const c = site.commitments;
       the name or username Meta shares with it;
     </li>
     <li>attachments such as images or files sent in the conversation;</li>
-    <li>notes, labels and handover details the business’s team adds.</li>
+    <li>notes, assignments and handover details the business’s team adds.</li>
   </ul>
 
   <h2 id="ai">6. AI processing and the knowledge base</h2>
   <p>
     Businesses add information to a knowledge base, such as answers, policies and product details.
-    To suggest or send a reply, {site.brand} sends the relevant message content and knowledge base
-    entries to an AI model provider, which returns a draft answer.
+    Where a workspace turns on AI features, relevant message content and knowledge base entries are
+    sent to the AI provider and model that the workspace selected or configured, which returns a
+    suggested or automatic reply.
   </p>
   <p>
-    AI provider and how it treats this data: <Fact fact={site.legal.aiProviderPolicy} />
+    <Fact fact={l.aiProviderPolicy} />
   </p>
   <p>
-    AI replies can be wrong. Businesses decide whether replies are sent automatically or reviewed
-    first, and can hand any conversation to a person.
+    AI replies can be wrong, and a person on the business’s team can take over a conversation. More
+    detail is on our <a href="/ai-transparency">AI transparency page</a>.
   </p>
 
   <h2 id="purposes">7. Purposes and legal bases</h2>
@@ -163,73 +161,41 @@ const c = site.commitments;
       <strong>Answering your messages to us</strong> (our legitimate interest in responding to you).
     </li>
   </ul>
-  {c.noSellingData && <p>We do not sell personal data.</p>}
+  {c.noSellingData && (
+    <p>
+      We do not sell customer conversation data, and we do not disclose it to unrelated third
+      parties for resale.
+    </p>
+  )}
 
   <h2 id="providers">8. Service providers and subprocessors</h2>
   <p>
-    We share personal data only with service providers that help us run {site.brand}, and only as
-    needed for the purposes above. Message data also passes through Meta, which delivers messages
-    between the business and its customers.
+    We process information to deliver the services our customers request. To do that we rely on
+    hosting, communication and other service providers that are necessary to run the platform, and
+    we share personal data with them only as needed for the purposes above. Our current list is on
+    the <a href="/subprocessors">subprocessors page</a>.
   </p>
-  {subprocessors.length > 0 ? (
-    <div class="overflow-x-auto rounded-xl border border-line">
-      <table class="w-full min-w-[30rem] border-collapse text-left text-[0.9375rem]">
-        <thead class="bg-mist">
-          <tr>
-            <th scope="col" class="px-4 py-3">
-              Provider
-            </th>
-            <th scope="col" class="px-4 py-3">
-              Purpose
-            </th>
-            <th scope="col" class="px-4 py-3">
-              Location
-            </th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-line">
-          {subprocessors.map((s) => (
-            <tr>
-              <td class="px-4 py-3">{s.name}</td>
-              <td class="px-4 py-3">{s.purpose}</td>
-              <td class="px-4 py-3">{s.location}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  ) : (
-    <p>
-      <mark class="owner-placeholder">
-        {placeholder(
-          'list of subprocessors with purpose and location (VPS host, AI provider, email, payments, monitoring)',
-        )}
-      </mark>
-    </p>
-  )}
-  <p>We may also disclose data where the law requires it.</p>
+  <p>
+    Some services are independent platforms rather than our subprocessors: Meta, which carries
+    messages between a business and its customers, and the AI provider a workspace chooses for
+    itself. Their own terms and privacy policies apply. We may also disclose data where the law
+    requires it.
+  </p>
 
   <h2 id="storage">9. Storage location, security and international transfers</h2>
   <p>
-    Data is stored in: <Fact fact={site.legal.storageLocation} />
+    Where data is stored: <Fact fact={l.storageLocation} />
   </p>
   <p>
-    Security measures:{' '}
-    <Fact
-      fact={{
-        value: null,
-        need: 'security measures actually in place (access control, encryption, backups)',
-      }}
-    />
+    How we protect it: <Fact fact={l.securityMeasures} />
     {c.encryptionInTransit && ' Data is encrypted in transit.'}
     {c.encryptionAtRest && ' Data is encrypted at rest.'}
   </p>
   <p>
-    Where data is transferred to a country other than the one it was collected in, we rely on the
-    safeguards required by applicable law:{' '}
-    <Fact
-      fact={{ value: null, need: 'transfer safeguards used (e.g. standard contractual clauses)' }}
-    />
+    International transfers: <Fact fact={l.transferSafeguards} />
+  </p>
+  <p>
+    More detail is on our <a href="/security">security page</a>.
   </p>
 
   <h2 id="retention">10. Retention and deletion</h2>
@@ -238,7 +204,7 @@ const c = site.commitments;
       Conversation messages: <Fact fact={site.retention.messages} />
     </li>
     <li>
-      Account data after an account is closed: <Fact fact={site.retention.account} />
+      Account data after a customer stops using {site.brand}: <Fact fact={site.retention.account} />
     </li>
     <li>
       Logs: <Fact fact={site.retention.logs} />
@@ -248,16 +214,16 @@ const c = site.commitments;
     </li>
   </ul>
   <p>
-    You can ask for deletion at any time. The <a href="/data-deletion">data deletion page</a>{' '}
-    explains how.
+    An authorised workspace owner can ask for deletion at any time, including before these periods
+    end. The <a href="/data-deletion">data deletion page</a> explains how.
   </p>
 
   <h2 id="disconnecting">11. Disconnecting and revoking access</h2>
   <p>
     A business can disconnect a Page or Instagram account inside {site.brand}, or remove{' '}
-    {site.brand}
-    in its Facebook or Instagram settings. After that we no longer receive new messages for it. What
-    happens to stored data is explained on the <a href="/data-deletion">data deletion page</a>.
+    {site.brand} in its Facebook or Instagram settings. After that we no longer receive new messages
+    for it. Disconnecting is not the same as deleting: what happens to stored data is explained on
+    the <a href="/data-deletion">data deletion page</a>.
   </p>
 
   <h2 id="rights">12. Your rights and how to use them</h2>
@@ -271,19 +237,19 @@ const c = site.commitments;
     conversation data. You can contact the business directly, or contact us and we will pass your
     request to it.
   </p>
-  <p>You may also complain to your local data protection authority.</p>
+  <p>You may also complain to the data protection authority where you live, if there is one.</p>
 
   <h2 id="cookies">13. Cookies and analytics</h2>
   <p>
     This website ({site.domain}) sets no cookies, runs no analytics and loads no third-party scripts
-    or fonts. Cookies used by the {site.brand} app itself:{' '}
-    <Fact fact={{ value: null, need: 'cookies the app at app.getassist.pro sets, and why' }} />
+    or fonts. Cookies used by the {site.brand} app are listed on our{' '}
+    <a href="/cookies">cookies page</a>.
   </p>
 
   <h2 id="children">14. Children</h2>
   <p>
-    {site.brand} is a service for businesses and is not directed at children. Eligibility:{' '}
-    <Fact fact={site.legal.eligibility} />
+    {site.brand} is a service for businesses and is not directed at children.{' '}
+    <Fact fact={l.eligibility} />
   </p>
 
   <h2 id="changes">15. Changes to this policy</h2>

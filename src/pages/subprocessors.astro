@@ -1,0 +1,93 @@
+---
+import DocLayout from '../layouts/DocLayout.astro';
+import LegalIntro from '../components/LegalIntro.astro';
+import EmailLink from '../components/EmailLink.astro';
+import { site } from '../config/site';
+import { placeholder } from '../config/owner';
+import { subprocessors } from '../config/subprocessors';
+
+const toc = [
+  { id: 'list', label: 'Current subprocessors' },
+  { id: 'independent', label: 'Independent platforms' },
+  { id: 'changes', label: 'Changes to this list' },
+];
+---
+
+<DocLayout
+  title="Subprocessors"
+  description="The service providers that process personal data for Get Assist, what they do and where, and the independent platforms Get Assist connects to."
+  toc={toc}
+>
+  <div slot="intro">
+    <LegalIntro title="Subprocessors">
+      <p class="text-slate">
+        Subprocessors are service providers that process personal data on our behalf so we can run{' '}
+        {site.brand}. This page lists them. How we use personal data is explained in our{' '}
+        <a href="/privacy">Privacy Policy</a>.
+      </p>
+    </LegalIntro>
+  </div>
+
+  <h2 id="list">Current subprocessors</h2>
+  {subprocessors.length > 0 ? (
+    <div class="overflow-x-auto rounded-xl border border-line">
+      <table class="w-full min-w-[30rem] border-collapse text-left text-[0.9375rem]">
+        <caption class="sr-only">Subprocessors</caption>
+        <thead class="bg-mist">
+          <tr>
+            <th scope="col" class="px-4 py-3">
+              Provider
+            </th>
+            <th scope="col" class="px-4 py-3">
+              Purpose
+            </th>
+            <th scope="col" class="px-4 py-3">
+              Location
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          {subprocessors.map((s) => (
+            <tr>
+              <th scope="row" class="px-4 py-3 font-semibold">
+                {s.name}
+              </th>
+              <td class="px-4 py-3 text-slate">{s.purpose}</td>
+              <td class="px-4 py-3 text-slate">{s.location}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  ) : (
+    <p>
+      <mark class="owner-placeholder">
+        {placeholder(
+          'confirmed subprocessors with purpose and location (VPS host, email provider, payment provider, monitoring)',
+        )}
+      </mark>
+    </p>
+  )}
+
+  <h2 id="independent">Independent platforms</h2>
+  <p>
+    Some services that handle conversation data are not our subprocessors. They are independent
+    platforms that a business chooses to use, and their own terms and privacy policies apply:
+  </p>
+  <ul>
+    <li>
+      <strong>Meta</strong> carries Messenger and Instagram messages between a business and its
+      customers.
+    </li>
+    <li>
+      <strong>AI providers</strong> chosen by a workspace. Each workspace selects and configures its
+      own AI provider and model, so the provider depends on that workspace’s settings.
+    </li>
+  </ul>
+
+  <h2 id="changes">Changes to this list</h2>
+  <p>
+    We update this page when we add or replace a subprocessor. Questions about this list can be sent
+    to <EmailLink email={site.emails.privacy} />.
+  </p>
+</DocLayout>

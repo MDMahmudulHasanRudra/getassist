@@ -3,6 +3,7 @@ import DocLayout from '../layouts/DocLayout.astro';
 import LegalIntro from '../components/LegalIntro.astro';
 import Fact from '../components/Fact.astro';
 import EmailLink from '../components/EmailLink.astro';
+import Operator from '../components/Operator.astro';
 import { site } from '../config/site';
 
 const toc = [
@@ -21,6 +22,7 @@ const toc = [
   { id: 'liability', label: '13. Liability and governing law' },
   { id: 'complaints', label: '14. Complaints and disputes' },
 ];
+const l = site.legal;
 ---
 
 <DocLayout
@@ -34,40 +36,42 @@ const toc = [
       <ul class="mt-3 list-disc space-y-2 pl-5 text-slate">
         <li>These terms apply to businesses that use {site.brand}.</li>
         <li>
-          You are responsible for the Pages and accounts you connect and for how you use them with
-          your customers.
+          You are responsible for the Pages and accounts you connect, the AI provider you choose,
+          and how you use them with your customers.
         </li>
+        <li>AI replies can be wrong. You stay responsible for replies sent from your workspace.</li>
         <li>
-          AI replies can be wrong. You decide whether they are sent automatically or reviewed.
+          Your conversation data belongs to you, and you can ask for it to be exported or deleted.
         </li>
-        <li>Your conversation data belongs to you, and you can export or delete it.</li>
       </ul>
     </LegalIntro>
   </div>
 
   <h2 id="provider">1. Provider and effective date</h2>
   <p>
-    {site.brand} is provided by <Fact fact={site.operator.legalName} />,{' '}
-    <Fact fact={site.operator.address} />, <Fact fact={site.operator.country} /> (“we”, “us”). These
-    terms take effect on <Fact fact={site.legal.effectiveDate} />.
+    <Operator /> In these terms “we” and “us” mean the operator of {site.brand}. These terms take
+    effect on <Fact fact={l.effectiveDate} />.
   </p>
 
   <h2 id="service">2. The service and eligibility</h2>
   <p>
-    {site.brand} lets a business receive and answer Facebook Messenger and Instagram direct messages
-    in one inbox, with AI-assisted replies based on a knowledge base the business provides and
-    handover to people on its team. Features and their current status are listed on the{' '}
-    <a href="/features">features page</a>.
+    {site.brand} helps teams manage customer conversations, coordinate staff, control access, use
+    AI-assisted messaging and review activity in one workspace. Features and their current status
+    are listed on the <a href="/features">features page</a>; features marked “coming soon” are not
+    part of the service until they are released.
   </p>
   <p>
-    Who may use the service: <Fact fact={site.legal.eligibility} />
+    <Fact fact={l.eligibility} />
   </p>
 
   <h2 id="accounts">3. Accounts</h2>
   <ul>
     <li>Give accurate information when you create an account and keep it up to date.</li>
     <li>Keep your sign-in details secret. You are responsible for activity under your account.</li>
-    <li>You may invite teammates; you are responsible for what they do in your account.</li>
+    <li>
+      You may invite teammates and give them roles; you are responsible for what they do in your
+      workspace.
+    </li>
     <li>
       Tell us straight away at <EmailLink email={site.emails.support} /> if you think your account
       has been accessed without permission.
@@ -79,7 +83,11 @@ const toc = [
     <li>Connect only Pages and accounts you are authorised to manage.</li>
     <li>
       Tell your customers how you handle their messages, including that you use {site.brand} and AI
-      assistance, as your local law requires.
+      assistance, as your local law and platform rules require.
+    </li>
+    <li>
+      If you connect your own AI provider, you are responsible for your account with that provider,
+      its costs, and accepting its terms.
     </li>
     <li>Make sure the content in your knowledge base is accurate and that you may use it.</li>
     <li>Comply with the laws that apply to your business and your customer communications.</li>
@@ -92,15 +100,20 @@ const toc = [
     <li>send unlawful, harmful, deceptive, harassing or discriminatory content;</li>
     <li>collect sensitive data you are not allowed to collect;</li>
     <li>try to break, overload, reverse-engineer or get around the security of the service;</li>
-    <li>resell or give access to the service to others without our written agreement.</li>
+    <li>
+      access another workspace’s data, or resell access to the service without our written
+      agreement.
+    </li>
   </ul>
 
   <h2 id="meta">6. Facebook and Instagram integration terms</h2>
   <p>
-    The integrations rely on Meta’s platforms. When you connect a Page or account, you must also
-    follow Meta’s terms and policies, including its rules for business messaging. Meta may change or
-    limit its platforms, which can affect what {site.brand} can do. {site.brand} is not affiliated
-    with or endorsed by Meta.
+    The Messenger and Instagram integrations rely on Meta’s platforms and are being prepared. They
+    will be offered to eligible customers when the necessary platform access and testing
+    requirements are complete. When you connect a Page or account, you must also follow Meta’s terms
+    and policies, including its rules for business messaging. Meta may change or limit its
+    platforms, which can affect what {site.brand} can do. {site.brand} is not affiliated with or
+    endorsed by Meta.
   </p>
   <p>
     You can disconnect at any time inside {site.brand} or in your Facebook or Instagram settings.
@@ -111,30 +124,30 @@ const toc = [
   <h2 id="ai">7. AI-generated responses and their limits</h2>
   <ul>
     <li>
-      AI replies are generated automatically from your knowledge base and the conversation. They can
-      be incomplete, out of date or wrong.
+      AI replies are generated by the AI provider and model your workspace selects, using your
+      knowledge base and the conversation. They can be incomplete, out of date or wrong.
     </li>
-    <li>
-      You choose whether replies are sent automatically or reviewed first, and you are responsible
-      for replies sent from your account.
-    </li>
+    <li>You are responsible for replies sent from your workspace, including automatic ones.</li>
     <li>
       Do not rely on AI replies for legal, medical, financial or safety-critical advice to your
       customers.
     </li>
     <li>Hand conversations to a person whenever a customer needs one.</li>
   </ul>
+  <p>
+    See our <a href="/ai-transparency">AI transparency page</a> for how AI features work.
+  </p>
 
   <h2 id="payment">8. Payment, renewal, cancellation and refunds</h2>
   <p>
-    <Fact fact={site.legal.pricingAndRefunds} />
+    <Fact fact={l.pricingAndRefunds} />
   </p>
 
   <h2 id="availability">9. Availability and maintenance</h2>
   <p>
     We work to keep {site.brand} running, but we do not promise it will be available without
-    interruption. We may carry out maintenance, and features that depend on Meta may stop working if
-    Meta changes or restricts its platforms.
+    interruption. We may carry out maintenance, and features that depend on Meta or on your AI
+    provider may stop working if those services change, restrict access or are unavailable.
   </p>
 
   <h2 id="ip">10. Intellectual property</h2>
@@ -148,19 +161,20 @@ const toc = [
   <p>
     Your conversation data and knowledge base belong to you. We process them on your instructions as
     described in our <a href="/privacy">Privacy Policy</a>, and we keep them confidential except
-    where the law requires disclosure.
+    where the law requires disclosure. We do not sell your data.
   </p>
 
   <h2 id="termination">12. Suspension, termination and data export</h2>
   <ul>
-    <li>You can stop using {site.brand} and close your account at any time.</li>
+    <li>You can stop using {site.brand} at any time.</li>
     <li>
       We may suspend or close an account that breaks these terms or Meta’s policies, or that puts
       the service or other users at risk. Where reasonable we will tell you first.
     </li>
     <li>
-      Before closing your account you can ask for an export of your data by emailing{' '}
-      <EmailLink email={site.emails.support} />. After closure, data is deleted as described on the{' '}
+      You can ask for an export of your data by emailing <EmailLink email={site.emails.support} />.
+      What we keep after you stop using the service, and for how long, is explained in our{' '}
+      <a href="/privacy#retention">Privacy Policy</a> and on the{' '}
       <a href="/data-deletion">data deletion page</a>.
     </li>
   </ul>
@@ -168,28 +182,19 @@ const toc = [
   <h2 id="liability">13. Liability and governing law</h2>
   <p>
     To the extent the law allows, we are not liable for indirect or consequential losses, for lost
-    profits or data, or for problems caused by Meta’s platforms or by AI replies you chose to send.
-    Nothing in these terms limits liability that cannot be limited by law.
+    profits or data, or for problems caused by Meta’s platforms, by your AI provider, or by AI
+    replies sent from your workspace. Nothing in these terms limits liability that cannot be limited
+    by law.
   </p>
   <p>
-    Liability cap:{' '}
-    <Fact
-      fact={{
-        value: null,
-        need: 'liability cap, if any (for example fees paid in the last 12 months)',
-      }}
-    />
+    Liability cap: <Fact fact={l.liabilityCap} />
   </p>
   <p>
-    Governing law and courts: <Fact fact={site.legal.governingLaw} />
+    <Fact fact={l.governingLaw} />
   </p>
 
   <h2 id="complaints">14. Complaints and disputes</h2>
   <p>
-    If you have a complaint, email <EmailLink email={site.emails.support} /> and we will try to
-    resolve it with you first.
-  </p>
-  <p>
-    <Fact fact={site.legal.complaints} />
+    <Fact fact={l.complaints} /> We will try to resolve any complaint with you first.
   </p>
 </DocLayout>

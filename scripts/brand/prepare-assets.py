@@ -43,15 +43,20 @@ pad = 12
 lockup_crop = lockup.crop((x0 - pad, y0 - pad, x1 + pad, y1 + pad))
 lockup_crop.save(assets / "lockup.png")
 
-# Open Graph image: 1200x630 white canvas, lockup + hero line.
+# Open Graph image: 1200x630 white canvas, lockup + tagline.
 og = Image.new("RGB", (1200, 630), "white")
 lw = 820
 lh = int(lockup_crop.height * lw / lockup_crop.width)
 og.paste(lockup_crop.resize((lw, lh), Image.LANCZOS), ((1200 - lw) // 2, 150))
 draw = ImageDraw.Draw(og)
-font = ImageFont.truetype("C:/Windows/Fonts/segoeuib.ttf", 46) if Path("C:/Windows/Fonts/segoeuib.ttf").exists() else ImageFont.load_default()
-text = "Customer support, simplified with AI."
-w = draw.textlength(text, font=font)
+text = "Every Conversation. Every Team. Every Channel. One Place."
+size = 46
+while True:
+    font = ImageFont.truetype("C:/Windows/Fonts/segoeuib.ttf", size)
+    w = draw.textlength(text, font=font)
+    if w <= 1060 or size <= 24:
+        break
+    size -= 2
 draw.text(((1200 - w) / 2, 150 + lh + 50), text, fill=(3, 26, 65), font=font)
 og.save(public / "og-image.png", optimize=True)
 print("square", square.size, "lockup", lockup_crop.size, "og", og.size)

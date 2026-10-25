@@ -1,0 +1,46 @@
+---
+import DocLayout from '../layouts/DocLayout.astro';
+import LegalIntro from '../components/LegalIntro.astro';
+import Fact from '../components/Fact.astro';
+import EmailLink from '../components/EmailLink.astro';
+import { site } from '../config/site';
+
+const toc = [
+  { id: 'website', label: 'This website' },
+  { id: 'app', label: 'The Get Assist app' },
+  { id: 'questions', label: 'Questions' },
+];
+---
+
+<DocLayout
+  title="Cookies"
+  description="Get Assist's website sets no cookies and uses no analytics. This page also lists the cookies used by the Get Assist app."
+  toc={toc}
+>
+  <div slot="intro">
+    <LegalIntro title="Cookies">
+      <p class="text-slate">
+        The website at {site.domain} sets no cookies and uses no analytics or tracking. That is why
+        there is no cookie banner.
+      </p>
+    </LegalIntro>
+  </div>
+
+  <h2 id="website">This website ({site.domain})</h2>
+  <ul>
+    <li>No cookies of any kind.</li>
+    <li>No analytics, advertising or tracking scripts.</li>
+    <li>No fonts, scripts or images loaded from other companies’ servers.</li>
+  </ul>
+
+  <h2 id="app">The {site.brand} app</h2>
+  <p>
+    The app you sign in to is a separate service and may need its own cookies, for example to keep
+    you signed in. <Fact fact={site.legal.appCookies} />
+  </p>
+
+  <h2 id="questions">Questions</h2>
+  <p>
+    Email <EmailLink email={site.emails.privacy} />.
+  </p>
+</DocLayout>

@@ -1,41 +1,58 @@
 ---
 import { site } from '../config/site';
-import Fact from './Fact.astro';
+import Operator from './Operator.astro';
 
-const links = [
-  { href: '/privacy', label: 'Privacy Policy' },
-  { href: '/terms', label: 'Terms of Service' },
-  { href: '/data-deletion', label: 'Data deletion' },
-  { href: '/contact', label: 'Contact' },
+const groups = [
+  {
+    label: 'Legal',
+    links: [
+      { href: '/privacy', label: 'Privacy Policy' },
+      { href: '/terms', label: 'Terms of Service' },
+      { href: '/data-deletion', label: 'Data deletion' },
+      { href: '/cookies', label: 'Cookies' },
+    ],
+  },
+  {
+    label: 'Trust',
+    links: [
+      { href: '/security', label: 'Security' },
+      { href: '/subprocessors', label: 'Subprocessors' },
+      { href: '/ai-transparency', label: 'AI transparency' },
+      { href: '/contact', label: 'Contact' },
+    ],
+  },
 ];
 const year = new Date().getFullYear();
 ---
 
 <footer class="mt-24 border-t border-line bg-mist">
   <div class="container-site py-12 text-[0.9375rem] text-slate">
-    <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-      <div class="max-w-md">
+    <div class="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+      <div class="max-w-sm">
         <p class="font-semibold text-ink">{site.brand}</p>
-        <p class="mt-1">
-          Messenger and Instagram conversations, AI-assisted replies and your team, in one inbox.
-        </p>
+        <p class="mt-1">{site.tagline}</p>
       </div>
-      <nav aria-label="Legal and contact" class="no-print">
-        <ul class="flex flex-wrap gap-x-6 gap-y-2">
-          {links.map((l) => (
-            <li>
-              <a href={l.href} class="text-ink underline decoration-line hover:decoration-ink">
-                {l.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <div class="no-print grid grid-cols-2 gap-x-14 gap-y-8">
+        {groups.map((g) => (
+          <nav aria-label={g.label}>
+            <p class="font-semibold text-ink">{g.label}</p>
+            <ul class="mt-2 space-y-1.5">
+              {g.links.map((l) => (
+                <li>
+                  <a href={l.href} class="text-ink underline decoration-line hover:decoration-ink">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))}
+      </div>
     </div>
     <div class="mt-10 space-y-2 border-t border-line pt-6 text-sm">
       <p>
-        {`© ${year} ${site.brand} is operated by `} <Fact fact={site.operator.legalName} />,
-        <Fact fact={site.operator.address} />, <Fact fact={site.operator.country} />.
+        {`© ${year} ${site.brand}. `}
+        <Operator />
       </p>
       <p>
         Facebook, Messenger and Instagram are trademarks of Meta Platforms, Inc. {site.brand} is not

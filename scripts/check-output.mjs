@@ -26,7 +26,17 @@ const exists = async (p) => {
   }
 };
 
-const banned = [/whats\s?app/i, /get\s?assisted/i, /\bGetAssist\b/, /gate\s?assist/i, /asisist/i];
+const banned = [
+  /whats\s?app/i,
+  /get\s?assisted/i,
+  /\bGetAssist\b/,
+  /gate\s?assist/i,
+  /gat\s?assist/i,
+  /asisist/i,
+  // Brand name glued to a neighbouring word (formatter dropped a space).
+  /Get Assist[a-z]/,
+  /[a-z]Get Assist/,
+];
 const files = [];
 for await (const f of walk(root)) files.push(f);
 

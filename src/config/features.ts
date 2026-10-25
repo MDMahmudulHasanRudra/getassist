@@ -17,7 +17,8 @@ export const features: Feature[] = [
   },
   {
     name: 'AI support automation',
-    summary: 'The AI drafts or sends answers using what you have added to your knowledge base.',
+    summary:
+      'AI replies based on your knowledge base, using the AI provider and model your workspace chooses.',
     status: 'coming-soon',
   },
   {
@@ -27,7 +28,7 @@ export const features: Feature[] = [
   },
   {
     name: 'Team management',
-    summary: 'Invite teammates and decide who works on which conversations.',
+    summary: 'Invite teammates, give them roles and decide who works on which conversations.',
     status: 'coming-soon',
   },
   {
@@ -37,7 +38,7 @@ export const features: Feature[] = [
   },
   {
     name: 'Reports and insights',
-    summary: 'See how many conversations came in and how they were handled.',
+    summary: 'See how conversations were handled across your team.',
     status: 'coming-soon',
   },
   {

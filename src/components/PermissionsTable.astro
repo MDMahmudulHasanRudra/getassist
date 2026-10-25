@@ -1,6 +1,6 @@
 ---
 import type { Permission } from '../config/permissions';
-import { loginFlow } from '../config/permissions';
+import { loginFlow, permissionsPending } from '../config/permissions';
 import Fact from './Fact.astro';
 
 interface Props {
@@ -11,9 +11,11 @@ const { permissions } = Astro.props;
 const unconfirmed = permissions.some((p) => !p.confirmed);
 ---
 
+<p class="mb-4">{loginFlow}</p>
 {unconfirmed && (
   <p class="mb-4">
-    <Fact fact={loginFlow} /> Permissions marked “to confirm” are candidates and are not final.
+    <Fact fact={permissionsPending} /> Permissions marked “to confirm” are candidates and are not
+    final.
   </p>
 )}
 <div class="overflow-x-auto rounded-xl border border-line">

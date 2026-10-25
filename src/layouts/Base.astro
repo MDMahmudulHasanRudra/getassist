@@ -24,7 +24,7 @@ const jsonLd = [
     name: site.brand,
     url: site.url,
     logo: new URL('/icon-512.png', site.url).href,
-    ...(site.operator.legalName.value ? { legalName: site.operator.legalName.value } : {}),
+    ...(site.operator.legalName ? { legalName: site.operator.legalName } : {}),
   },
   {
     '@context': 'https://schema.org',
@@ -60,7 +60,7 @@ const jsonLd = [
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Get Assist logo with the line: Customer support, simplified with AI."
+      content="Get Assist logo with the line: Every Conversation. Every Team. Every Channel. One Place."
     />
     <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />

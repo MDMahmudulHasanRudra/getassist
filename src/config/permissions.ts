@@ -8,9 +8,18 @@ export interface Permission {
   confirmed: boolean;
 }
 
-export const loginFlow = fact(
+/**
+ * OWNER_CONFIRMED (from product planning): one platform-owned Meta app using
+ * Facebook Login; Instagram is reached through a Facebook Page linked to an
+ * Instagram professional account. Still to be checked against release code.
+ */
+export const loginFlow =
+  'Get Assist uses Facebook Login. Instagram accounts are connected through the Facebook Page they are linked to.';
+
+/** Shown while any permission below is still a candidate; blocks production builds. */
+export const permissionsPending = fact(
   null,
-  'confirm the login flow (Facebook Login or Instagram Login) and the exact permissions requested',
+  'confirm each permission against the Meta App Dashboard and the review screencast, then set confirmed: true',
 );
 
 /** Candidate list from the brief, to be confirmed by the owner. */

@@ -42,7 +42,7 @@ const steps = [
 const faqs = [
   {
     q: 'Which messaging channels does Get Assist work with?',
-    a: 'Facebook Messenger and Instagram Direct Messages. Both connections are pending Meta approval and will open once that review is complete.',
+    a: 'Facebook Messenger and Instagram Direct Messages. Both integrations are being prepared and will be offered to eligible customers when the necessary platform access and testing requirements are complete.',
   },
   {
     q: 'What kind of Instagram account do I need?',
@@ -165,6 +165,7 @@ const faqs = [
           You can disconnect a Page or Instagram account at any time, and anyone can ask for their
           data to be deleted. The <a href="/data-deletion">data deletion page</a> explains how.
         </p>
+        {site.commitments.noSellingData && <p>We do not sell customer data.</p>}
         <p>This website sets no cookies and uses no analytics.</p>
       </div>
     </div>
