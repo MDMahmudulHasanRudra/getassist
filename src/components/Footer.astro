@@ -34,8 +34,7 @@ const year = new Date().getFullYear();
     </div>
     <div class="mt-10 space-y-2 border-t border-line pt-6 text-sm">
       <p>
-        © {year}
-        {site.brand} is operated by <Fact fact={site.operator.legalName} />,
+        {`© ${year} ${site.brand} is operated by `} <Fact fact={site.operator.legalName} />,
         <Fact fact={site.operator.address} />, <Fact fact={site.operator.country} />.
       </p>
       <p>

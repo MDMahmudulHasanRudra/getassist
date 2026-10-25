@@ -1,0 +1,18 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        ALLOW_PLACEHOLDERS: ${ALLOW_PLACEHOLDERS:-0}
+    image: getassist-web:${TAG:-local}
+    container_name: getassist-web
+    restart: unless-stopped
+    read_only: true
+    # nginx-unprivileged writes its pid and temp files under /tmp.
+    tmpfs: ['/tmp']
+    cap_drop: ['ALL']
+    security_opt: ['no-new-privileges:true']
+    mem_limit: 128m
+    # Loopback only; the VPS reverse proxy forwards getassist.pro here.
+    # Change WEB_PORT if 8081 is taken on the VPS.
+    ports: ['127.0.0.1:${WEB_PORT:-8081}:8080']
