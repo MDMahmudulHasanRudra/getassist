@@ -3,14 +3,15 @@
 Final hosting decision (owner, 26 Oct 2026): the public website runs on **Cloudflare Pages**
 with automatic deployments from GitHub. It is **not** deployed to the VPS.
 
-| What                 | Where                                                                                |
-| -------------------- | ------------------------------------------------------------------------------------ |
-| Public website       | `https://getassist.pro` — Cloudflare Pages                                           |
-| `www.getassist.pro`  | 301 redirect to `https://getassist.pro`                                              |
-| SaaS app (unchanged) | `https://zoventio.udboy.com` — "Open the app" links here                             |
-| Future SaaS domain   | `app.getassist.pro` — migration postponed; nothing here touches it                   |
-| GitHub repository    | `https://github.com/MDMahmudulHasanRudra/getassist` (website only)                   |
-| DNS                  | `getassist.pro` zone is already on Cloudflare (`amalia` / `viddy.ns.cloudflare.com`) |
+| What                 | Where                                                                                       |
+| -------------------- | ------------------------------------------------------------------------------------------- |
+| Public website       | `https://getassist.pro` — Cloudflare Pages                                                  |
+| `www.getassist.pro`  | 301 redirect to `https://getassist.pro`                                                     |
+| Software demo        | `https://demo.getassist.pro/login` — "Open the app" links here (runs on the VPS, unchanged) |
+| SaaS app (unchanged) | `https://zoventio.udboy.com`                                                                |
+| Future SaaS domain   | `app.getassist.pro` — migration postponed; nothing here touches it                          |
+| GitHub repository    | `https://github.com/MDMahmudulHasanRudra/getassist` (website only)                          |
+| DNS                  | `getassist.pro` zone is already on Cloudflare (`amalia` / `viddy.ns.cloudflare.com`)        |
 
 Nothing in this guide changes the SaaS, its Docker containers, PostgreSQL, Meta OAuth,
 WhatsApp, Telegram, `NEXTAUTH_URL` or any API callback URL.
@@ -91,7 +92,7 @@ Resulting DNS records (Cloudflare → `getassist.pro` → DNS → Records):
 | CNAME | `www`                 | `getassist.pages.dev` | Proxied (orange) |
 
 Do **not** add an A record for `@` pointing at the VPS. Leave any existing records (mail,
-verification TXT, etc.) alone. Do not create `app` yet.
+verification TXT, etc.) alone. Do not create `app` yet, and leave the existing `demo` record (VPS) unchanged.
 
 **www → apex redirect:** `getassist.pro` zone → **Rules** → **Redirect Rules** → Create rule
 (or use the "Redirect from WWW to root" template):
@@ -167,7 +168,7 @@ locally, then push to `main` (or to a branch first for a preview).
 - [ ] Custom domains `getassist.pro` and `www.getassist.pro` active
 - [ ] Redirect Rule www → apex (301); Always Use HTTPS on
 - [ ] `scripts/smoke.sh https://getassist.pro public` passes
-- [ ] "Open the app" goes to https://zoventio.udboy.com
+- [ ] "Open the app" goes to https://demo.getassist.pro/login
 - [ ] Final 1024 × 1024 app icon ready; Meta Dashboard URLs pasted (`docs/meta-review-checklist.md`)
 
 ## Earlier VPS test (removed)

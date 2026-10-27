@@ -10,8 +10,8 @@ export const site = {
   brand: 'Get Assist',
   domain: 'getassist.pro',
   url: 'https://getassist.pro',
-  /** Current SaaS address. Moves to https://app.getassist.pro when the owner migrates the app. */
-  appUrl: 'https://zoventio.udboy.com',
+  /** OWNER_CONFIRMED (27 Oct 2026): "Open the app" goes to the demo. Production SaaS stays at zoventio.udboy.com. */
+  appUrl: 'https://demo.getassist.pro/login',
   heroTitle: 'Customer support, simplified with AI.',
   heroLead:
     'Bring your customer conversations, support team and AI-powered assistance together in one workspace.',

@@ -35,8 +35,8 @@ const toc = [
 
   <h2 id="app">The {site.brand} app</h2>
   <p>
-    The app you sign in to, at <a href={site.appUrl}>{site.appUrl.replace('https://', '')}</a>, is a
-    separate service. <Fact fact={site.legal.appCookies} />
+    The app you sign in to, at <a href={site.appUrl}>{new URL(site.appUrl).host}</a>, is a separate
+    service. <Fact fact={site.legal.appCookies} />
   </p>
 
   <h2 id="questions">Questions</h2>

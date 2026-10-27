@@ -19,7 +19,7 @@ production-verified yet (no access to its code or servers) — see
 
 Supersedes the "support both" answer above. The website is hosted on **Cloudflare Pages**
 only; `www` redirects to the apex; the "Open the app" link points to the current SaaS at
-`https://zoventio.udboy.com` until the postponed migration to `app.getassist.pro`. The SaaS
+`https://zoventio.udboy.com` until the postponed migration to `app.getassist.pro`. **Update 27 Oct 2026:** the "Open the app" link now points to the software demo, `https://demo.getassist.pro/login`. The SaaS
 backend, its domain, `NEXTAUTH_URL`, callbacks, Docker, PostgreSQL, Meta OAuth, WhatsApp
 and Telegram are out of scope and untouched.
 

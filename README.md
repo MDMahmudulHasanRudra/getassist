@@ -5,7 +5,7 @@ Static marketing, integration, legal and trust website for **Get Assist**, hoste
 TypeScript strict + Tailwind CSS 4. No JavaScript is shipped to the browser, no cookies, no
 analytics, no third-party requests, no server functions.
 
-The "Open the app" link goes to the current SaaS at https://zoventio.udboy.com.
+The "Open the app" link goes to the software demo at https://demo.getassist.pro/login.
 
 ## Requirements
 
