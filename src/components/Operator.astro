@@ -1,8 +1,9 @@
 ---
 import { site } from '../config/site';
 
-const { legalName, address, location, statement } = site.operator;
-const parts = [legalName, address, location].filter(Boolean).join(', ');
+const { founders, address, location } = site.operator;
+const names = founders.join(' and ');
+const place = address ? `${address}, ${location}` : location;
 ---
 
-{legalName ? `${site.brand} is operated by ${parts}.` : statement}
+{`${site.brand} is run by its founders, ${names}, from ${place}.`}

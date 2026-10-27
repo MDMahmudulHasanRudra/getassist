@@ -24,7 +24,7 @@ const jsonLd = [
     name: site.brand,
     url: site.url,
     logo: new URL('/icon-512.png', site.url).href,
-    ...(site.operator.legalName ? { legalName: site.operator.legalName } : {}),
+    founder: site.operator.founders.map((name) => ({ '@type': 'Person', name })),
   },
   {
     '@context': 'https://schema.org',

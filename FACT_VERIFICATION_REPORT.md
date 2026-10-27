@@ -28,16 +28,23 @@ is still to do (see the last section).
 | Connect/disconnect steps ("channel settings of your project") | integration pages                             | Match against the real app UI and the screencast                  |
 | Handover keeps earlier messages visible; teammates have roles | home, features, AI transparency               | Product UI                                                        |
 
+## Owner answers published on 27 Oct 2026 (OWNER_CONFIRMED, not code-verified)
+
+Security measures, storage location (Hostinger, Kuala Lumpur — from a public IP lookup),
+retention periods, deletion timeframe, app cookies, disconnect behaviour, the missing Meta
+deletion callback, subprocessors and the liability cap. The Meta scopes were also seen in
+the app code during a read-only search. A deeper read of the app code was blocked by the
+session's permission rules, so these still deserve an audit by the founders.
+
 ## Not claimed until verified (gated in config)
 
-| Claim                                                                                                        | Gate                                                |
-| ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
-| Encryption in transit                                                                                        | `commitments.encryptionInTransit`                   |
-| Encryption at rest (all customer data, not only tokens)                                                      | `commitments.encryptionAtRest`                      |
-| AI content goes only to the workspace's own provider, nothing sent with AI off                               | `commitments.aiIsolationVerified`                   |
-| Security measures, storage region, transfers, retention, app cookies, disconnect and Meta callback behaviour | `[[OWNER: …]]` placeholders; see LAUNCH_BLOCKERS.md |
-| Any feature "Available" or "Beta"                                                                            | `features.ts` statuses                              |
-| Telegram                                                                                                     | `site.telegramLive`                                 |
+| Claim                                                                          | Gate                              |
+| ------------------------------------------------------------------------------ | --------------------------------- |
+| Encryption in transit                                                          | `commitments.encryptionInTransit` |
+| Encryption at rest (all customer data, not only tokens)                        | `commitments.encryptionAtRest`    |
+| AI content goes only to the workspace's own provider, nothing sent with AI off | `commitments.aiIsolationVerified` |
+| Any feature "Available" or "Beta"                                              | `features.ts` statuses            |
+| Telegram                                                                       | `site.telegramLive`               |
 
 ## Audit still to do (needs access to the SaaS repo and server)
 

@@ -1,43 +1,44 @@
 # Launch blockers
 
-Only items that are genuinely outstanding. Items marked ⛔ show as `[[OWNER: …]]` on the
-site and fail `npm run check:placeholders`, so a production build is refused until they
-are filled. Items marked ⚠ do not show on the site but must be done before launch.
+Only items that are genuinely outstanding. As of 27 Oct 2026 **no `[[OWNER: …]]`
+placeholders remain**: `npm run check:placeholders` passes and the Cloudflare production
+build succeeds. The items below do not show on the site but must be done before or soon
+after launch.
 
-## Owner answers needed
+## Before launch
 
-- ⚠ **Full legal name** of the owner/operator and a **street or service address** (`site.operator.legalName`, `address`). Not shown publicly while missing, by owner instruction; a privacy lawyer should confirm whether the policy needs them.
-- ⛔ **Inactive account retention**: is it a maximum of 12 months, or longer? Is anything purged automatically? (`retention.account`)
-- ⛔ **Deletion timeframe** in days for verified requests (`legal.deletionTimeframe`).
-- ⚠ **Refund rules** before taking any payment: free or paid trial and its length; 100% or 90% trial refund; fixed 80% or prorated early-cancellation refund; billing cycles, renewal, payment methods, refund timing. The Terms use interim wording ("terms on request, confirmed in writing before you pay") until then.
-- ⚠ **Minimum age** for account owners and staff, if any.
-- ⚠ **Create and test** contact@, support@ and privacy@getassist.pro.
+- ⚠ **Create and test** contact@, support@ and privacy@getassist.pro. Every legal page tells
+  people to write to them.
+- ⚠ **Create the Cloudflare Pages project**, custom domains and www redirect (owner action).
+  See `CLOUDFLARE_DEPLOYMENT.md`.
+- ⚠ **Lawyer review** of Privacy, Terms, Data deletion, Cookies, Security, Subprocessors and
+  AI transparency. If the text changes, update `legal.lastUpdated`.
 
-## Technical facts to verify in the SaaS (agent can do this with access)
+## Before Meta App Review
 
-- ⛔ Where data is stored: VPS provider, datacenter region, backup location (`legal.storageLocation`).
-- ⛔ Security measures actually in place (`legal.securityMeasures`).
-- ⛔ Provider regions and transfer safeguards (`legal.transferSafeguards`).
-- ⛔ Subprocessors: name, purpose, location (`src/config/subprocessors.ts`).
-- ⛔ Payment provider, or confirm none (`legal.paymentProvider`).
-- ⛔ Retention of messages, logs and backups (`retention.messages`, `logs`, `backups`).
-- ⛔ What happens to stored conversations after disconnecting (`legal.afterDisconnect`).
-- ⛔ What the Meta deauthorize and data-deletion callbacks do (`legal.metaDeletionCallback`).
-- ⛔ Cookies set by the app at zoventio.udboy.com (`legal.appCookies`).
-- ⛔ Each Meta permission checked against the App Dashboard and screencast (`permissions.ts`, set `confirmed: true`).
-- ⚠ Live SaaS API domain for OAuth and webhooks (not guessed from getassist.pro).
-- ⚠ Which features are live, to update `features.ts` badges.
+- ⚠ **Meta data deletion callback is not built.** The data deletion page says so honestly and
+  tells people to email instead. Meta accepts a Data Deletion Instructions URL
+  (`https://getassist.pro/data-deletion`), but building the callback in the SaaS is
+  recommended; when it exists, update `legal.metaDeletionCallback`.
+- ⚠ **Final 1024 × 1024 app icon** from a vector or ≥ 2048 px master. See
+  [docs/BRAND_ASSETS_REPORT.md](docs/BRAND_ASSETS_REPORT.md).
+- ⚠ Integration pages' connect/disconnect steps checked against the real app UI and the
+  screencast.
 
-## Legal
+## Before taking payments
 
-- ⛔ Liability cap (`legal.liabilityCap`), after legal review.
-- ⛔ Effective date and last-updated date: set on the day the reviewed final versions are published.
-- ⚠ **Lawyer review** of Privacy, Terms, Data deletion, Cookies, Security, Subprocessors and AI transparency.
+- ⚠ **Refund rules**: free or paid trial and its length; 100% or 90% trial refund; fixed 80%
+  or prorated early-cancellation refund; billing cycles, renewal, payment methods, refund
+  timing. The Terms use interim wording ("terms on request, confirmed in writing before you
+  pay") until then.
 
-## Brand
+## Open but not blocking
 
-- ⚠ Final icon (SVG or ≥ 2048 px), horizontal lockup, and a 16 px favicon. Required for the 1024×1024 Meta app icon. See [docs/BRAND_ASSETS_REPORT.md](docs/BRAND_ASSETS_REPORT.md).
-
-## Deployment
-
-- ⚠ Create the Cloudflare Pages project, custom domains and www redirect (owner action). See `CLOUDFLARE_DEPLOYMENT.md`.
+- ⚠ Minimum age for account owners and staff, if any (`legal.eligibility`).
+- ⚠ Feature badges: all "Coming soon" until each feature is confirmed live (`features.ts`).
+- ⚠ Telegram: hidden until confirmed available to users (`site.telegramLive`).
+- ⚠ Owner-confirmed claims not yet verified in the app code (security measures, workspace
+  isolation, retention, disconnect behaviour). See
+  [FACT_VERIFICATION_REPORT.md](FACT_VERIFICATION_REPORT.md).
+- ⚠ Log and backup retention (90 / 30 days) are now public commitments: make sure the
+  server actually deletes them on that schedule.

@@ -20,18 +20,12 @@ export const site = {
     'Get Assist helps teams manage customer conversations, coordinate staff and use AI-assisted replies in one workspace.',
 
   operator: {
-    /**
-     * Owner's full legal name. Not yet supplied. While null, public pages use
-     * `statement` instead, and the gap is tracked in LAUNCH_BLOCKERS.md
-     * (owner instruction: do not show this gap on deployed public pages).
-     */
-    legalName: null as string | null,
-    /** Street or service address. Not yet supplied; tracked in LAUNCH_BLOCKERS.md. */
+    /** OWNER_CONFIRMED (27 Oct 2026): run by its two founders. */
+    founders: ['MD Mahmudul Hasan Rudra', 'Sifat A Rabbi'] as string[],
+    /** Street or service address. Owner chose not to publish one; tracked in LAUNCH_BLOCKERS.md. */
     address: null as string | null,
-    /** OWNER_CONFIRMED: sole proprietor operating from Dhaka, Bangladesh. */
+    /** OWNER_CONFIRMED: operating from Dhaka, Bangladesh. */
     location: 'Dhaka, Bangladesh',
-    statement:
-      'Get Assist is a business software platform operated independently from Dhaka, Bangladesh.',
   },
 
   /** OWNER_CONFIRMED (planned). Owner must create and test each mailbox before launch. */
@@ -42,19 +36,20 @@ export const site = {
   },
 
   legal: {
-    /** Set on the day the final, reviewed version is first published. */
-    effectiveDate: fact(null, 'effective date (set when the reviewed final version is published)'),
-    lastUpdated: fact(null, 'last-updated date (set when the reviewed final version is published)'),
+    /** OWNER_CONFIRMED (27 Oct 2026). Update both when the text changes after legal review. */
+    effectiveDate: fact('27 October 2026', 'effective date'),
+    lastUpdated: fact('27 October 2026', 'last-updated date'),
     /** OWNER_CONFIRMED as a proposal; LEGAL_REVIEW. */
     governingLaw: fact(
       'These terms are governed by the laws of Bangladesh. Disputes are subject to the courts of Bangladesh, without limiting any mandatory consumer rights that apply to you.',
       'governing law and jurisdiction',
     ),
+    /** OWNER_CONFIRMED; VPS provider and region from a public IP lookup of the server. */
     storageLocation: fact(
-      null,
-      'where customer data is stored: VPS provider, datacenter region and backup location',
+      'on a virtual private server provided by Hostinger in Kuala Lumpur, Malaysia. This includes the database, files sent in conversations and backups.',
+      'where customer data is stored',
     ),
-    deletionTimeframe: fact(null, 'number of days to complete a verified deletion request'),
+    deletionTimeframe: fact('30 days', 'number of days to complete a verified deletion request'),
     /** OWNER_CONFIRMED: each workspace selects its own AI provider and model. */
     aiProviderPolicy: fact(
       'Each workspace chooses and configures its own AI provider and model. Each provider’s data handling and model-training terms differ, so workspace owners should review the terms of the provider they select.',
@@ -74,42 +69,62 @@ export const site = {
       'Send complaints in writing to support@getassist.pro, or to privacy@getassist.pro for privacy matters.',
       'complaints process',
     ),
-    paymentProvider: fact(null, 'payment provider used for subscriptions, or confirm none'),
+    /** OWNER_CONFIRMED: no online payments yet. */
+    paymentProvider: fact(
+      'none at present. Payments are arranged directly with us, for example by invoice or bank transfer, so no payment provider holds your card details.',
+      'payment provider',
+    ),
+    /** OWNER_CONFIRMED (27 Oct 2026); not yet code-verified (see FACT_VERIFICATION_REPORT.md). */
     securityMeasures: fact(
-      null,
-      'security measures verified in the deployed app (tenant isolation, access control, TLS, credential encryption, backups)',
+      'All traffic to the app uses HTTPS. AI provider keys that workspaces add are stored encrypted. Staff access is limited by the role each person is given, and each workspace’s data is kept separate from every other workspace.',
+      'security measures',
     ),
+    /** OWNER_CONFIRMED: plain disclosure, no contractual safeguards claimed. */
     transferSafeguards: fact(
-      null,
-      'regions of the VPS, AI providers and email provider, and the safeguards used for transfers',
+      'Our servers are in Malaysia. When a workspace turns on AI features, relevant content is sent to the AI provider that workspace chose, which may process it in other countries, such as the United States, under that provider’s own terms.',
+      'international transfers',
     ),
-    appCookies: fact(null, 'cookies the app (zoventio.udboy.com) sets, from a runtime audit'),
-    liabilityCap: fact(null, 'liability cap, after legal review'),
+    /** OWNER_CONFIRMED: NextAuth sign-in cookies only. */
+    appCookies: fact(
+      'The app uses only the cookies it needs to sign you in and keep you signed in: a session cookie, a security (CSRF) cookie and a cookie that remembers where to return after signing in. It uses no analytics or advertising cookies.',
+      'app cookies',
+    ),
+    /** OWNER_CONFIRMED; LEGAL_REVIEW. */
+    liabilityCap: fact(
+      'Our total liability for all claims relating to Get Assist is limited to the fees you paid us for Get Assist in the 12 months before the claim arose.',
+      'liability cap',
+    ),
+    /** OWNER_CONFIRMED. */
     afterDisconnect: fact(
-      null,
-      'what happens to stored conversations after a Page or account is disconnected (verified in the app)',
+      'they stay in your workspace until an authorised workspace owner asks us to delete them.',
+      'what happens to stored conversations after disconnecting',
     ),
+    /** OWNER_CONFIRMED: Meta's automated deletion callback is not built yet. */
     metaDeletionCallback: fact(
-      null,
-      'what the app’s Meta deauthorize and data deletion callbacks actually do (verified in the app)',
+      'this stops Get Assist’s access straight away, but it does not yet delete stored data automatically. To delete it, send a deletion request as described above.',
+      'Meta data deletion callback behaviour',
     ),
   },
 
+  /** OWNER_CONFIRMED (27 Oct 2026). */
   retention: {
-    messages: fact(null, 'retention period for conversation messages'),
-    account: fact(
-      null,
-      'inactive account retention: proposed up to 12 months for reactivation; confirm the period and whether it is purged automatically',
+    messages: fact(
+      'kept while the workspace uses Get Assist, and after that until an authorised workspace owner asks us to delete them.',
+      'retention period for conversation messages',
     ),
-    logs: fact(null, 'retention period for logs'),
-    backups: fact(null, 'retention period for backups'),
+    account: fact(
+      'kept until an authorised workspace owner asks us to delete it, so the account can be reactivated.',
+      'account retention',
+    ),
+    logs: fact('kept for 90 days, then deleted.', 'retention period for logs'),
+    backups: fact('kept for 30 days, then deleted.', 'retention period for backups'),
   },
 
   /** Commitments published only once confirmed. */
   commitments: {
     /** OWNER_CONFIRMED: Get Assist does not sell customer data. */
     noSellingData: true,
-    /** Set true only after verifying deployed TLS on public and backend paths. */
+    /** Broad claim; the specific HTTPS statement is in legal.securityMeasures instead. */
     encryptionInTransit: false,
     /** Set true only if verified for all customer data, not just access tokens. */
     encryptionAtRest: false,
